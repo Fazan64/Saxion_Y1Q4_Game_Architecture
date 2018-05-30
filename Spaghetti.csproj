@@ -43,6 +43,9 @@
     <Compile Include="sources\AiPaddle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sources\UserPaddle.cs" />
+    <Compile Include="sources\Vector2.cs" />
+    <Compile Include="sources\Mathf.cs" />
+    <Compile Include="sources\GameObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

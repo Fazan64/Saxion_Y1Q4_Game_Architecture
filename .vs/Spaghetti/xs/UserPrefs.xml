@@ -1,12 +1,20 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sources/Game.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sources/Ball.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="22" Column="9" />
+      <File FileName="sources/Game.cs" Line="84" Column="1" />
+      <File FileName="sources/GameObject.cs" Line="37" Column="18" />
+      <File FileName="sources/AiPaddle.cs" Line="21" Column="15" />
+      <File FileName="sources/UserPaddle.cs" Line="7" Column="21" />
+      <File FileName="sources/Vector2.cs" Line="4" Column="2" />
+      <File FileName="sources/Mathf.cs" Line="174" Column="23" />
+      <File FileName="sources/Ball.cs" Line="27" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/sources/Ball.cs" relfile="sources/Ball.cs" line="17" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.Spaghetti PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

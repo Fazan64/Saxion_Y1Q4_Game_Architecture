@@ -2,66 +2,41 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-
-namespace Spagetti
+namespace Spaghetti
 {
-	class AiPaddle
-	{
-		private string name;
-		private Image image;
-		private float x, y;
-		private float mx, my;
-		private Ball ball;
+    class AiPaddle : GameObject
+    {
+        private Ball ball;
 
-		public AiPaddle( string name, string file, float x, Ball ball )
-		{
-			this.name = name;
-			this.image = Image.FromFile(file);
-			Console.WriteLine(this.image.Size);
-			this.x = x - 8;
-			this.y = ball.Y-32+8;
-			this.mx = 0;
-			this.my = 0;
-			this.ball = ball;
-		}
+        public AiPaddle(string name, string imageFileName, float x, Ball ball) : base(name, imageFileName)
+        {
+            Console.WriteLine(image.Size);
 
-		public void Update( Graphics graphics )
-		{
-		// input/events;
-		// no input
+            this.ball = ball;
 
-		// move, track the ball's y;
-		float factor = 1 - Math.Abs( x - ball.X) /640.0f;
-		float targetY = ball.Y-32+8;
-		y += factor * (targetY - y) / 125;
+            position = new Vector2(x - 8, ball.y - 32 + 8);
+            velocity = Vector2.zero;
+        }
 
-		// detect hitting wall
-		if( y < 0+4 )
-		{
-		y = 0+4;
-		}
-		if( y > 479-4-64)
-		{
-		y = 479-4-64;
-		}
+        public override void Update()
+        {
+            // input/events;
+            // no input
 
-		// render;
-		graphics.DrawImage(image, x, y);
-		}
+            // move, track the ball's y;
+            float factor = 1 - Math.Abs(x - ball.x) / 640.0f;
+            float targetY = ball.y - 32 + 8;
+            y += factor * (targetY - y) / 125;
 
-		public float X
-		{
-			get
-			{
-				return x;
-			}
-		}
-		public float Y
-		{
-			get
-			{
-				return y;
-			}
-		}
-	}
+            // detect hitting wall
+            if (y < 0 + 4)
+            {
+                y = 0 + 4;
+            }
+            else if (y > 479 - 4 - 64)
+            {
+                y = 479 - 4 - 64;
+            }
+        }
+    }
 }
