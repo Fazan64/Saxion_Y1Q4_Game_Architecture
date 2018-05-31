@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Spaghetti
 {
     class Game : Form
     {
+        
         static void Main(string[] args)
         {
             Game game = new Game();
@@ -35,6 +37,7 @@ namespace Spaghetti
             ClientSize = new System.Drawing.Size(640, 480);
             ResumeLayout();
 
+
             ball = new Ball("Ball", "assets/ball.png");
             gameObjects.Add(ball);
 
@@ -44,8 +47,8 @@ namespace Spaghetti
             rightPaddle = new AiPaddle("Right", "assets/paddle.png", 639 - 20, ball);
             gameObjects.Add(rightPaddle);
 
-            fontSheet = Image.FromFile("assets/digits.png");
 
+            fontSheet = Image.FromFile("assets/digits.png");
             b = Image.FromFile("assets/booster.png");
 
             Show(); // make form visible
@@ -54,9 +57,28 @@ namespace Spaghetti
 
         private void Run()
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             isRunning = true;
+
+            const double fixedTimeStep = 1.0 / 1000.0;
+            double previous = stopwatch.Elapsed.TotalSeconds;
+            double lag = 0.0;
+
             while (isRunning) // frame based loop, unsteady
             {
+                double current = stopwatch.Elapsed.TotalSeconds;
+                double elapsed = current - previous;
+                previous = current;
+                lag += elapsed;
+
+                while (lag >= fixedTimeStep)
+                {
+                    UpdateGameObjects();
+                    lag -= fixedTimeStep;
+                }
+
                 Application.DoEvents();// pump form event queue, doing nothing with then
                 Refresh(); // causes OnPaint event
             }
@@ -65,8 +87,6 @@ namespace Spaghetti
         protected override void OnPaint(PaintEventArgs paint)
         {
             base.OnPaint(paint);
-
-            UpdateGameObjects();
 
             foreach (var gameObject in gameObjects)
             {
@@ -106,6 +126,7 @@ namespace Spaghetti
 
                 ball.Resolve(leftPaddle.x + 8, ball.y, +Math.Abs(ball.velocity.x), dy * ball.velocity.y); // hmm
             }
+
             if (ball.x < rightPaddle.x + 8 && ball.x + 16 > rightPaddle.x && ball.y < rightPaddle.y + 64 && ball.y + 16 > rightPaddle.y)
             {
                 Console.WriteLine("Right Hit");

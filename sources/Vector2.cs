@@ -36,10 +36,8 @@ namespace Spaghetti
         /// The angle of the vector in radians.
         public float angle
         {
-
             get
             {
-
                 float result = Atan2(y, x);
                 if (result < 0f) result += 2f * PI;
 
@@ -49,19 +47,16 @@ namespace Spaghetti
 
         public static float Angle(Vector2 a, Vector2 b)
         {
-
             return Acos(Dot(a, b) / a.magnitude / b.magnitude);
         }
 
         public static float Dot(Vector2 a, Vector2 b)
         {
-
             return a.x * b.x + a.y * b.y;
         }
 
         public static Vector2 FromAngleAndLength(float angle, float length)
         {
-
             return new Vector2(
                 Cos(angle),
                 Sin(angle)
@@ -70,7 +65,6 @@ namespace Spaghetti
 
         public Vector2(float x, float y)
         {
-
             this.x = x;
             this.y = y;
         }
@@ -79,7 +73,6 @@ namespace Spaghetti
         public Vector2 Subtract(Vector2 other) => this -= other;
         public Vector2 Scale(Vector2 other)
         {
-
             this.x *= other.x;
             this.y *= other.y;
             return this;
@@ -87,27 +80,23 @@ namespace Spaghetti
 
         public Vector2 TruncatedBy(float maxLength)
         {
-
             if (this.magnitude <= maxLength) return this;
             return normalized * maxLength;
         }
 
         public Vector2 ScaledBy(Vector2 other)
         {
-
             return new Vector2(x * other.x, y * other.y);
         }
 
         public Vector2 DividedBy(Vector2 other)
         {
-
             return new Vector2(x / other.x, y / other.y);
         }
 
         /// Returns a copy of this vector rotated by the given angle in radians.
         public Vector2 RotatedBy(float angle)
         {
-
             return FromAngleAndLength(this.angle + angle, magnitude);
         }
 
@@ -119,7 +108,6 @@ namespace Spaghetti
 
         public Vector2 RotateRadians(float rotationAngle)
         {
-
             float cos = Cos(rotationAngle);
             float sin = Sin(rotationAngle);
 
@@ -134,13 +122,11 @@ namespace Spaghetti
 
         public Vector2 RotateDegrees(float rotationAngle)
         {
-
             return RotateRadians(rotationAngle * degToRad);
         }
 
         public Vector2 RotateAroundRadians(float rotationAngle, Vector2 rotationPoint)
         {
-
             return this
                 .Subtract(rotationPoint)
                 .RotateRadians(rotationAngle)
@@ -149,13 +135,11 @@ namespace Spaghetti
 
         public Vector2 RotateAroundDegrees(float rotationAngle, Vector2 rotationPoint)
         {
-
             return RotateAroundRadians(rotationAngle * degToRad, rotationPoint);
         }
 
         public Vector2 Normalize()
         {
-
             if (isZero) return this;
 
             float invMagnitude = 1f / magnitude;
@@ -168,7 +152,6 @@ namespace Spaghetti
 
         public Vector2 SetXY(float x, float y)
         {
-
             this.x = x;
             this.y = y;
 
@@ -177,7 +160,6 @@ namespace Spaghetti
 
         public Vector2 SetXY(Vector2 other)
         {
-
             x = other.x;
             y = other.y;
 
@@ -186,7 +168,6 @@ namespace Spaghetti
 
         public Vector2 Reflect(Vector2 surfaceNormal, float coeficientOfReflection = 1f)
         {
-
             Vector2 unitNormal = surfaceNormal.normalized;
             return Subtract(
                 unitNormal * (1f + coeficientOfReflection) * Dot(this, unitNormal)
@@ -195,7 +176,6 @@ namespace Spaghetti
 
         public Vector2 ProjectedOn(Vector2 other)
         {
-
             Vector2 unitOther = other.normalized;
             return unitOther * Dot(this, unitOther);
         }
@@ -210,37 +190,31 @@ namespace Spaghetti
 
         override public string ToString()
         {
-
             return "[Vector2 " + x + ", " + y + "]";
         }
 
         public static Vector2 operator +(Vector2 a, Vector2 b)
         {
-
             return new Vector2(a.x + b.x, a.y + b.y);
         }
 
         public static Vector2 operator -(Vector2 a, Vector2 b)
         {
-
             return new Vector2(a.x - b.x, a.y - b.y);
         }
 
         public static Vector2 operator *(Vector2 vec, float scalar)
         {
-
             return new Vector2(vec.x * scalar, vec.y * scalar);
         }
 
         public static Vector2 operator /(Vector2 vec, float scalar)
         {
-
             return new Vector2(vec.x / scalar, vec.y / scalar);
         }
 
         public static Vector2 operator -(Vector2 vec)
         {
-
             return new Vector2(-vec.x, -vec.y);
         }
 
@@ -251,7 +225,6 @@ namespace Spaghetti
 
         public static bool operator ==(Vector2 a, Vector2 b)
         {
-
             return
                 Abs(a.x - b.x) < float.Epsilon &&
                 Abs(a.y - b.y) < float.Epsilon;
@@ -259,7 +232,6 @@ namespace Spaghetti
 
         public static bool operator !=(Vector2 a, Vector2 b)
         {
-
             return
                 Abs(a.x - b.x) >= float.Epsilon ||
                 Abs(a.y - b.y) >= float.Epsilon;
@@ -268,10 +240,8 @@ namespace Spaghetti
 
     public static class Vector2Extensions
     {
-
         public static Vector2 GetClosestCardinalDirection(this Vector2 vec)
         {
-
             vec = vec.normalized;
             if (vec.y > vec.x)
                 return vec.y > -vec.x ? Vector2.up : Vector2.left;
