@@ -8,7 +8,8 @@ namespace Spaghetti
 {
     class Game : Form
     {
-        
+        public const float FixedDeltaTime = 1f / 100f;
+
         static void Main(string[] args)
         {
             Game game = new Game();
@@ -37,7 +38,6 @@ namespace Spaghetti
             ClientSize = new System.Drawing.Size(640, 480);
             ResumeLayout();
 
-
             ball = new Ball("Ball", "assets/ball.png");
             gameObjects.Add(ball);
 
@@ -46,7 +46,6 @@ namespace Spaghetti
 
             rightPaddle = new AiPaddle("Right", "assets/paddle.png", 639 - 20, ball);
             gameObjects.Add(rightPaddle);
-
 
             fontSheet = Image.FromFile("assets/digits.png");
             b = Image.FromFile("assets/booster.png");
@@ -62,24 +61,27 @@ namespace Spaghetti
 
             isRunning = true;
 
-            const double fixedTimeStep = 1.0 / 1000.0;
-            double previous = stopwatch.Elapsed.TotalSeconds;
-            double lag = 0.0;
+            float previous = stopwatch.ElapsedMilliseconds / 1000f;
+            float lag = 0f;
 
             while (isRunning) // frame based loop, unsteady
             {
-                double current = stopwatch.Elapsed.TotalSeconds;
-                double elapsed = current - previous;
-                previous = current;
+                float current = stopwatch.ElapsedMilliseconds / 1000f;
+                float elapsed = current - previous;
                 lag += elapsed;
+                previous = current;
 
-                while (lag >= fixedTimeStep)
-                {
-                    UpdateGameObjects();
-                    lag -= fixedTimeStep;
-                }
+                Debug.WriteLine(1f / elapsed);
 
                 Application.DoEvents();// pump form event queue, doing nothing with then
+
+                while (lag >= FixedDeltaTime)
+                {
+                    UpdateGameObjects();
+                    lag -= FixedDeltaTime;
+                }
+
+                //Debug.WriteLine("refresh");
                 Refresh(); // causes OnPaint event
             }
         }
@@ -95,6 +97,8 @@ namespace Spaghetti
 
             paint.Graphics.DrawImage(b, 320 - 16, 120 - 16);
             DisplayScore(paint.Graphics);
+
+            //Debug.WriteLine("paint");
         }
 
         private void UpdateGameObjects()

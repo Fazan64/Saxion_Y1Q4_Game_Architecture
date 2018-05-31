@@ -1,0 +1,10 @@
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Release/assets/ball.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Release/assets/booster.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Release/assets/digits.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Release/assets/paddle.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Release/Spagetti.exe.config
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Release/Spagetti.exe
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Release/Spagetti.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Release/Spaghetti.csproj.CoreCompileInputs.cache
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Release/Spagetti.exe
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Release/Spagetti.pdb

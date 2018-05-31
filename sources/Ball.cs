@@ -6,38 +6,43 @@ namespace Spaghetti
 {
     class Ball : GameObject
     {
+        private const float MaxSpeed = 300f;
+        private const float InitialHorizontalSpeed = 200f;
+        private const float MaxInitialVerticalSpeed = 70f;
+
         private bool isBoosting = false;
-        private int stunnedCounter = 0;
+        private float stunnedCounter = 0f;
 
         // TODO Won't have to make a constructor like this after transitioning to a component-based system.
-        public Ball(string name, string file) : base(name, file) {}
+        public Ball(string name, string fileName) : base(name, fileName) {}
 
         protected override void Start()
         {
-            velocity.x = 10;
+            velocity.x = 10f;
             Reset();
         }
 
         public override void Update()
         {
-            --stunnedCounter;
-            if (stunnedCounter <= 0)
+            if (stunnedCounter > 0f) 
             {
-                // Ranging mx to -16..16 using Min/Max
+                stunnedCounter -= Game.FixedDeltaTime;
+                if (stunnedCounter > 0f) return;
+            }
 
-                x += Math.Min(16, Math.Max(-16, isBoosting ? velocity.x * 2.0f : velocity.x)); // limit mx to 2x paddlewith
-                y += Math.Max(-16, Math.Min(isBoosting ? velocity.y * 2.0f : velocity.y, 16)); // limit to same
+            Vector2 finalVelocity = isBoosting ? velocity : velocity * 2f;
+            finalVelocity = finalVelocity.TruncatedBy(MaxSpeed);
+            position += finalVelocity * Game.FixedDeltaTime;
 
-                if (y < 0f)
-                {
-                    y = 0f;
-                    velocity.y *= -1;
-                }
-                else if (y > 479f - 16f)
-                {
-                    y = 479f - 16f;
-                    velocity.y *= -1;
-                }
+            if (y < 0f)
+            {
+                y = 0f;
+                velocity.y *= -1f;
+            }
+            else if (y > 479f - 16f)
+            {
+                y = 479f - 16f;
+                velocity.y *= -1f;
             }
         }
 
@@ -55,13 +60,13 @@ namespace Spaghetti
             position = new Vector2(320f - 5f, 240f - 5f);
 
             velocity = new Vector2(
-                0.5f * Math.Sign(velocity.x),
-                0.15f * (float)(1.0 + Game.random.NextDouble() - 0.5) // random around = or - 0.15f;
+                InitialHorizontalSpeed * Math.Sign(velocity.x),
+                MaxInitialVerticalSpeed * (Game.random.NextDouble() > 0.5f ? 1f : -1f) * (float)(Game.random.NextDouble() - 0.5) * 2f // random around = or - 0.15f;
             );
             Console.WriteLine(Math.Sign(velocity.x));
 
             isBoosting = false;
-            stunnedCounter = 1000;
+            stunnedCounter = 1f;
         }
 
         public void Resolve(float x, float y, float mx, float my)

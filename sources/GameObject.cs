@@ -30,12 +30,16 @@ namespace Spaghetti
 
             this.name = name;
             this.image = Image.FromFile(imageFileName);
+            Debug.Assert(image != null);
             Start();
         }
 
         // TODO Get a version of the update manager from the modified gxp engine. 
         protected virtual void Start() {}
-        public virtual void Update() {}
+        public virtual void Update() 
+        {
+            position += velocity * Game.FixedDeltaTime;
+        }
 
         public virtual void Render(Graphics graphics)
         {

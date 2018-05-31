@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sources/Game.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sources/Ball.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="38" Column="13" />
-      <File FileName="sources/GameObject.cs" Line="34" Column="10" />
+      <File FileName="sources/Game.cs" Line="102" Column="40" />
+      <File FileName="sources/GameObject.cs" Line="40" Column="56" />
+      <File FileName="sources/Ball.cs" Line="19" Column="40" />
       <File FileName="sources/AiPaddle.cs" Line="21" Column="36" />
       <File FileName="sources/Mathf.cs" Line="174" Column="23" />
-      <File FileName="sources/Ball.cs" Line="23" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
