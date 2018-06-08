@@ -50,11 +50,14 @@
     <Compile Include="Engine\Component.cs" />
     <Compile Include="Engine\Components.cs" />
     <Compile Include="Engine\Utils\DelegateHelper.cs" />
-    <Compile Include="Engine\Callbacks.cs" />
     <Compile Include="Engine\Utils\ObjectExtensions.cs" />
-    <Compile Include="Engine\UpdateManager.cs" />
     <Compile Include="Engine\EngineObject.cs" />
-    <Compile Include="Engine\IBehaviour.cs" />
+    <Compile Include="Engine\Update\IBehaviour.cs" />
+    <Compile Include="Engine\Update\UpdateManager.cs" />
+    <Compile Include="Engine\Update\Callbacks.cs" />
+    <Compile Include="Engine\Rendering\IRenderer.cs" />
+    <Compile Include="Engine\Rendering\RenderingManager.cs" />
+    <Compile Include="Engine\Components\ImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\ball.png">
@@ -72,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Engine\" />
+    <Folder Include="Engine\Update\" />
+    <Folder Include="Engine\Rendering\" />
+    <Folder Include="Engine\Components\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

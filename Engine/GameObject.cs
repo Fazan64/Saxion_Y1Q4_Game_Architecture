@@ -5,10 +5,9 @@ using System.Diagnostics;
 
 namespace Engine
 {
-    public class GameObject : EngineObject
+    public class GameObject : EngineObject, IBehaviour
     {
         public string name { get; set; }
-        public Image image { get; set; }
         public Vector2 position;
         public Vector2 velocity;
 
@@ -26,27 +25,28 @@ namespace Engine
             set { position = new Vector2(x, value); }
         }
 
-        public GameObject(string name, string imageFileName)
+        public GameObject(string name)
         {
             callbacks  = new Callbacks(this);
             components = new Components(this);
 
             this.name = name;
-            this.image = Image.FromFile(imageFileName);
-            Debug.Assert(image != null);
-            Start();
+
+            Game.main.Add(this);
         }
 
-        // TODO Get a version of the update manager from the modified gxp engine. 
-        protected virtual void Start() {}
+        Callbacks IBehaviour.GetCallbacks() => callbacks;
+
         public virtual void Update() 
         {
             position += velocity * Game.FixedDeltaTime;
         }
 
-        public virtual void Render(Graphics graphics)
-        {
-            graphics.DrawImage(image, position.x, position.y);
-        }
+        // Shortcuts
+        public T Get<T>()       where T : class => components.Get<T>();
+        public T Add<T>()       where T : Component => components.Add<T>();
+        public bool Has<T>()    where T : class => components.Has<T>();
+        public T GetOrAdd<T>()  where T : Component => components.GetOrAdd<T>();
+        public void Remove<T>() where T : class => components.Remove<T>();
     }
 }

@@ -1,16 +1,16 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/EngineObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/GameObject.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="75" Column="31" />
-      <File FileName="Engine/EngineObject.cs" Line="2" Column="23" />
-      <File FileName="Engine/GameObject.cs" Line="37" Column="17" />
-      <File FileName="Engine/UpdateManager.cs" Line="42" Column="43" />
-      <File FileName="Engine/Components.cs" Line="6" Column="2" />
-      <File FileName="Engine/Mathf.cs" Line="14" Column="9" />
-      <File FileName="Engine/Component.cs" Line="13" Column="10" />
-      <File FileName="Engine/Callbacks.cs" Line="25" Column="30" />
-      <File FileName="Engine/Utils/DelegateHelper.cs" Line="6" Column="39" />
-      <File FileName="Engine/IBehaviour.cs" Line="4" Column="2" />
+      <File FileName="sources/Game.cs" Line="149" Column="13" />
+      <File FileName="Engine/GameObject.cs" Line="39" Column="9" />
+      <File FileName="Engine/EngineObject.cs" Line="8" Column="54" />
+      <File FileName="sources/Ball.cs" Line="8" Column="39" />
+      <File FileName="Engine/Components/ImageRenderer.cs" Line="25" Column="37" />
+      <File FileName="Engine/Rendering/RenderingManager.cs" Line="16" Column="43" />
+      <File FileName="Engine/Update/UpdateManager.cs" Line="59" Column="1" />
+      <File FileName="Engine/Component.cs" Line="10" Column="17" />
+      <File FileName="sources/AiPaddle.cs" Line="13" Column="10" />
+      <File FileName="Engine/Components.cs" Line="34" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

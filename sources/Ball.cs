@@ -5,7 +5,7 @@ using Engine;
 
 namespace Spaghetti
 {
-    class Ball : GameObject
+    class Ball : GameObject, IRenderer
     {
         private const float MaxSpeed = 300f;
         private const float InitialHorizontalSpeed = 200f;
@@ -15,10 +15,11 @@ namespace Spaghetti
         private float stunnedCounter = 0f;
 
         // TODO Won't have to make a constructor like this after transitioning to a component-based system.
-        public Ball(string name, string fileName) : base(name, fileName) {}
+        public Ball(string name) : base(name) {}
 
-        protected override void Start()
+        void Start()
         {
+            Console.WriteLine(this + ": Start");
             velocity.x = 10f;
             Reset();
         }
@@ -47,9 +48,8 @@ namespace Spaghetti
             }
         }
 
-        public override void Render(Graphics graphics)
+        public void Render(Graphics graphics)
         {
-            base.Render(graphics);
             if (isBoosting)
             {
                 graphics.DrawEllipse(Pens.White, position.x - 5f, position.y - 5f, 26f, 26f);

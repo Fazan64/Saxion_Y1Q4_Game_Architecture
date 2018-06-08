@@ -28,6 +28,7 @@ namespace Engine
         public static readonly Random random = new Random(1);
 
         private readonly UpdateManager updateManager;
+        private readonly RenderingManager renderingManager;
 
         private bool isRunning = false;
         private Ball ball;
@@ -38,12 +39,15 @@ namespace Engine
         private Image fontSheet;
         private uint leftScore, rightScore;
 
-        private List<GameObject> gameObjects = new List<GameObject>();
+        public Vector2 size  => new Vector2(ClientSize.Width, ClientSize.Height);
 
         public Game()
         {
             Assert.IsNull(main);
             main = this;
+
+            updateManager = new UpdateManager();
+            renderingManager = new RenderingManager();
 
             BackColor = System.Drawing.Color.Black; // background color
             DoubleBuffered = true; // avoid flickering
@@ -53,18 +57,10 @@ namespace Engine
             ClientSize = new System.Drawing.Size(640, 480);
             ResumeLayout();
 
-
-            ball = new Ball("Ball", "assets/ball.png");
-            gameObjects.Add(ball);
-
-            leftPaddle = new AiPaddle("Left", "assets/paddle.png", 20, ball);
-            gameObjects.Add(leftPaddle);
-
-            rightPaddle = new AiPaddle("Right", "assets/paddle.png", 639 - 20, ball);
-            gameObjects.Add(rightPaddle);
-
             fontSheet = Image.FromFile("assets/digits.png");
             b = Image.FromFile("assets/booster.png");
+
+            AddGameObjects();
 
             Show(); // make form visible
             Run();
@@ -73,11 +69,13 @@ namespace Engine
         public void Add(EngineObject engineObject)
         {
             updateManager.Add(engineObject);
+            renderingManager.Add(engineObject);
         }
 
         public void Remove(EngineObject engineObject)
         {
             updateManager.Remove(engineObject);
+            renderingManager.Remove(engineObject);
         }
 
         private void Run()
@@ -103,7 +101,7 @@ namespace Engine
 
                 while (lag >= FixedDeltaTime)
                 {
-                    UpdateGameObjects();
+                    UpdateFixedTimestep();
                     lag -= FixedDeltaTime;
                 }
 
@@ -116,10 +114,9 @@ namespace Engine
         {
             base.OnPaint(paint);
 
-            foreach (var gameObject in gameObjects)
-            {
-                gameObject.Render(paint.Graphics);
-            }
+            renderingManager.Render(paint.Graphics);
+
+            // TODO Move out everything below
 
             paint.Graphics.DrawImage(b, 320 - 16, 120 - 16);
             DisplayScore(paint.Graphics);
@@ -127,12 +124,11 @@ namespace Engine
             //Debug.WriteLine("paint");
         }
 
-        private void UpdateGameObjects()
+        private void UpdateFixedTimestep()
         {
-            foreach (var gameObject in gameObjects)
-            {
-                gameObject.Update();
-            }
+            updateManager.Step();
+
+            // TODO Move out everything below
 
             CheckPaddleHit();
 
@@ -143,6 +139,18 @@ namespace Engine
             }
 
             CheckScore();
+        }
+
+        private void AddGameObjects()
+        {
+            ball = new Ball("Ball");
+            ball.Add<ImageRenderer>().SetImage("assets/ball.png"); 
+
+            leftPaddle = new AiPaddle("Left", 20, ball);
+            leftPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
+
+            rightPaddle = new AiPaddle("Right", 639 - 20, ball);
+            rightPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
         }
 
         private void CheckPaddleHit()

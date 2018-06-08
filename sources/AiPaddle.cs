@@ -9,10 +9,8 @@ namespace Spaghetti
     {
         private Ball ball;
 
-        public AiPaddle(string name, string imageFileName, float x, Ball ball) : base(name, imageFileName)
+        public AiPaddle(string name, float x, Ball ball) : base(name)
         {
-            Console.WriteLine(image.Size);
-
             this.ball = ball;
 
             position = new Vector2(x - 8, ball.y - 32 + 8);

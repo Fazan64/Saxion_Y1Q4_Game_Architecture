@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using System.Reflection;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace Engine
 {
@@ -10,7 +10,7 @@ namespace Engine
         private Action startActions;
         private Action updateActions;
 
-        private readonly HashSet<EngineObject> registered = new HashSet<EngineObject>();
+        private readonly HashSet<IBehaviour> registered = new HashSet<IBehaviour>();
 
         public void Step()
         {
@@ -30,8 +30,10 @@ namespace Engine
         {
             if (engineObject is IBehaviour behaviour)
             {
+                Assert.IsFalse(registered.Contains(behaviour));
+
                 Add(behaviour.GetCallbacks());
-                registered.Add(engineObject);
+                registered.Add(behaviour);
             }
         }
 
@@ -39,13 +41,17 @@ namespace Engine
         {
             if (engineObject is IBehaviour behaviour)
             {
+                Assert.IsTrue(registered.Contains(behaviour));
+
                 Remove(behaviour.GetCallbacks());
+                registered.Remove(behaviour);
             }
         }
 
         public bool Contains(EngineObject engineObject)
         {
-            return registered.Contains(engineObject);
+            if (!(engineObject is IBehaviour behaviour)) return false; 
+            return registered.Contains(behaviour);
         }
 
         private void Add(Callbacks callbacks)

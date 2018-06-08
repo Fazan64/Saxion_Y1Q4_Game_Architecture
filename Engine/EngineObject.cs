@@ -7,17 +7,12 @@ namespace Engine
     {
         public bool isDestroyed { get; private set; }
 
-        public EngineObject()
+        public void Destroy()
         {
-            Game.main.Add(this);
-        }
+            Assert.IsFalse(isDestroyed, this + " is already destroyed!");
 
-        public static void Destroy(EngineObject engineObject)
-        {
-            Assert.IsFalse(engineObject.isDestroyed, engineObject + " is already destroyed!");
-
-            engineObject.isDestroyed = true;
-            Game.main.Remove(engineObject);
+            isDestroyed = true;
+            Game.main.Remove(this);
         }
     }
 }

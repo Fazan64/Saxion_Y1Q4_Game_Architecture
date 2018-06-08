@@ -10,6 +10,8 @@ namespace Engine
         internal Component()
         {
             callbacks = new Callbacks(this);
+
+            Game.main.Add(this);
         }
 
         Callbacks IBehaviour.GetCallbacks() => callbacks;
