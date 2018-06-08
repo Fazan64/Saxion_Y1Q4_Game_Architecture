@@ -67,7 +67,7 @@ namespace Spaghetti
 
             rb.velocity = new Vector2(
                 InitialHorizontalSpeed * Math.Sign(rb.velocity.x),
-                MaxInitialVerticalSpeed * (float)(Game.random.NextDouble() - 0.5) * 2f // random around = or - 0.15f;
+                MaxInitialVerticalSpeed * (float)(Game.random.NextDouble() - 0.5) * 2f
             );
             Console.WriteLine(Math.Sign(rb.velocity.x));
 
@@ -77,9 +77,9 @@ namespace Spaghetti
 
         public void Resolve(float x, float y, float mx, float my)
         {
-            position = new Vector2(x, y);
+            position    = new Vector2(x, y);
             rb.velocity = new Vector2(mx, my);
-            isBoosting = false;
+            isBoosting  = false;
         }
 
         public void SetBoost(bool value)

@@ -22,7 +22,7 @@ namespace Spaghetti
             // no input
 
             // move, track the ball's y;
-            float factor = 1 - Math.Abs(x - ball.x) / 640.0f;
+            float factor = 1f - Math.Abs(x - ball.x) / game.size.x;
             float targetY = ball.y - 32 + 8;
             y += factor * (targetY - y) * Game.FixedDeltaTime;
 

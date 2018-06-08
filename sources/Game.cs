@@ -19,7 +19,7 @@ static class Program
 // TEMP In Engine for now
 namespace Engine
 {
-    class Game : Form
+    public class Game : Form
     {
         public const float FixedDeltaTime = 1f / 100f;
 

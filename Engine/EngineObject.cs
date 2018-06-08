@@ -7,6 +7,8 @@ namespace Engine
     {
         public bool isDestroyed { get; private set; }
 
+        protected Game game => Game.main;
+
         public void Destroy()
         {
             Assert.IsFalse(isDestroyed, this + " is already destroyed!");

@@ -9,20 +9,22 @@ namespace Spaghetti
         private Image b;
         private Image fontSheet;
         private uint leftScore, rightScore;
+        private Vector2 boostZonePosition;
 
         private Ball ball;
         private AiPaddle leftPaddle;
         private AiPaddle rightPaddle; // TEMP. Also AI for now. TODO add a player-controlled paddle
 
-        public MainLevel() : base("MainLevel") 
+        public MainLevel() : base("MainLevel")
         {
             fontSheet = Image.FromFile("assets/digits.png");
             b = Image.FromFile("assets/booster.png");
+
+            boostZonePosition = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
         }
 
         void Start()
         {
-
             ball = new Ball("Ball");
             ball.Add<ImageRenderer>().SetImage("assets/ball.png");
             ball.Add<Rigidbody>();
@@ -38,8 +40,8 @@ namespace Spaghetti
         {
             CheckPaddleHit();
 
-            // what am I doing here, forgot ;( 
-            if (ball.x < 320 + 16 && ball.x + 16 > 320 - 16 && ball.y < 120 + 16 && ball.y + 16 > 120 - 16)
+            // TODO have the boost zone be its own gameobject
+            if (ball.x < boostZonePosition.x + 16 && ball.x + 16 > boostZonePosition.x - 16 && ball.y < boostZonePosition.y + 16 && ball.y + 16 > boostZonePosition.y - 16)
             {
                 ball.SetBoost(true); // for 60 frames.... how long is that
             }
@@ -50,7 +52,7 @@ namespace Spaghetti
         void IRenderer.Render(Graphics graphics)
         {
             // BUG: Start is not guarranteed to be called before the first Render.
-            graphics.DrawImage(b, 320 - 16, 120 - 16);
+            graphics.DrawImage(b, boostZonePosition.x - 16, boostZonePosition.y - 16);
             DisplayScore(graphics);
         }
 

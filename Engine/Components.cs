@@ -58,6 +58,7 @@ namespace Engine
                 if (component is T)
                 {
                     list.RemoveAt(i);
+                    i -= 1;
                     OnComponentRemoved?.Invoke(gameObject, component);
                 }
             }
