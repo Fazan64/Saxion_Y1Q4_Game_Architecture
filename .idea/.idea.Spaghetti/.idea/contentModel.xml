@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="App.config" t="Include" />
+      <e p="assets" t="Include">
+        <e p="ball.png" t="Include" />
+        <e p="booster.png" t="Include" />
+        <e p="digits.png" t="Include" />
+        <e p="paddle.png" t="Include" />
+      </e>
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Properties" t="Include">
+        <e p="AssemblyInfo.cs" t="Include" />
+      </e>
+      <e p="sources" t="Include">
+        <e p="AiPaddle.cs" t="Include" />
+        <e p="Ball.cs" t="Include" />
+        <e p="Game.cs" t="Include" />
+        <e p="GameObject.cs" t="Include" />
+        <e p="Mathf.cs" t="Include" />
+        <e p="UserPaddle.cs" t="Include" />
+        <e p="Vector2.cs" t="Include" />
+      </e>
+      <e p="Spaghetti.csproj" t="IncludeRecursive" />
+      <e p="Spaghetti.sln" t="IncludeFlat" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Spaghetti.493000470.00" t="ExcludeRecursive" />
+  </component>
+</project>

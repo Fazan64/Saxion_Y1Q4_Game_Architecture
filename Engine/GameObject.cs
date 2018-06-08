@@ -3,14 +3,17 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace Spaghetti
+namespace Engine
 {
-    public class GameObject
+    public class GameObject : EngineObject
     {
         public string name { get; set; }
         public Image image { get; set; }
         public Vector2 position;
         public Vector2 velocity;
+
+        public readonly Components components;
+        internal readonly Callbacks callbacks;
 
         public float x
         {
@@ -25,8 +28,8 @@ namespace Spaghetti
 
         public GameObject(string name, string imageFileName)
         {
-            Debug.Assert(!string.IsNullOrWhiteSpace(name));
-            Debug.Assert(!string.IsNullOrWhiteSpace(imageFileName));
+            callbacks  = new Callbacks(this);
+            components = new Components(this);
 
             this.name = name;
             this.image = Image.FromFile(imageFileName);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Engine;
 
 namespace Spaghetti
 {
@@ -61,7 +62,7 @@ namespace Spaghetti
 
             velocity = new Vector2(
                 InitialHorizontalSpeed * Math.Sign(velocity.x),
-                MaxInitialVerticalSpeed * (Game.random.NextDouble() > 0.5f ? 1f : -1f) * (float)(Game.random.NextDouble() - 0.5) * 2f // random around = or - 0.15f;
+                MaxInitialVerticalSpeed * (float)(Game.random.NextDouble() - 0.5) * 2f // random around = or - 0.15f;
             );
             Console.WriteLine(Math.Sign(velocity.x));
 

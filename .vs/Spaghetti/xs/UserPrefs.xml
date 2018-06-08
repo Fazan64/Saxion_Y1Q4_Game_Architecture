@@ -1,11 +1,16 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sources/Ball.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/EngineObject.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="102" Column="40" />
-      <File FileName="sources/GameObject.cs" Line="40" Column="56" />
-      <File FileName="sources/Ball.cs" Line="19" Column="40" />
-      <File FileName="sources/AiPaddle.cs" Line="21" Column="36" />
-      <File FileName="sources/Mathf.cs" Line="174" Column="23" />
+      <File FileName="sources/Game.cs" Line="75" Column="31" />
+      <File FileName="Engine/EngineObject.cs" Line="2" Column="23" />
+      <File FileName="Engine/GameObject.cs" Line="37" Column="17" />
+      <File FileName="Engine/UpdateManager.cs" Line="42" Column="43" />
+      <File FileName="Engine/Components.cs" Line="6" Column="2" />
+      <File FileName="Engine/Mathf.cs" Line="14" Column="9" />
+      <File FileName="Engine/Component.cs" Line="13" Column="10" />
+      <File FileName="Engine/Callbacks.cs" Line="25" Column="30" />
+      <File FileName="Engine/Utils/DelegateHelper.cs" Line="6" Column="39" />
+      <File FileName="Engine/IBehaviour.cs" Line="4" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

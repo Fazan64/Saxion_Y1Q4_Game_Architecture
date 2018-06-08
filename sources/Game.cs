@@ -3,19 +3,31 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
+using NUnit.Framework;
 
-namespace Spaghetti
+using Spaghetti;
+using Engine;
+
+static class Program
+{
+    static void Main(string[] args)
+    {
+        var game = new Game();
+    }
+}
+
+// TEMP In Engine for now
+namespace Engine
 {
     class Game : Form
     {
         public const float FixedDeltaTime = 1f / 100f;
 
-        static void Main(string[] args)
-        {
-            Game game = new Game();
-        }
+        public static Game main { get; private set; }
 
         public static readonly Random random = new Random(1);
+
+        private readonly UpdateManager updateManager;
 
         private bool isRunning = false;
         private Ball ball;
@@ -30,6 +42,9 @@ namespace Spaghetti
 
         public Game()
         {
+            Assert.IsNull(main);
+            main = this;
+
             BackColor = System.Drawing.Color.Black; // background color
             DoubleBuffered = true; // avoid flickering
 
@@ -37,6 +52,7 @@ namespace Spaghetti
             Text = "Spagetti--";
             ClientSize = new System.Drawing.Size(640, 480);
             ResumeLayout();
+
 
             ball = new Ball("Ball", "assets/ball.png");
             gameObjects.Add(ball);
@@ -52,6 +68,16 @@ namespace Spaghetti
 
             Show(); // make form visible
             Run();
+        }
+
+        public void Add(EngineObject engineObject)
+        {
+            updateManager.Add(engineObject);
+        }
+
+        public void Remove(EngineObject engineObject)
+        {
+            updateManager.Remove(engineObject);
         }
 
         private void Run()

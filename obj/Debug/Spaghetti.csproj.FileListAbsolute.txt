@@ -2,7 +2,6 @@
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/assets/booster.png
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/assets/digits.png
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/assets/paddle.png
-/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Spagetti.exe.config
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Spagetti.exe
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Spagetti.pdb
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spaghetti.csproj.CoreCompileInputs.cache
