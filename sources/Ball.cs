@@ -14,17 +14,22 @@ namespace Spaghetti
         private bool isBoosting = false;
         private float stunnedCounter = 0f;
 
+        private Rigidbody rb;
+
         // TODO Won't have to make a constructor like this after transitioning to a component-based system.
         public Ball(string name) : base(name) {}
 
         void Start()
         {
             Console.WriteLine(this + ": Start");
-            velocity.x = 10f;
+
+            rb = Get<Rigidbody>();
+            rb.velocity.x = 10f;
+
             Reset();
         }
 
-        public override void Update()
+        void Update()
         {
             if (stunnedCounter > 0f) 
             {
@@ -32,23 +37,23 @@ namespace Spaghetti
                 if (stunnedCounter > 0f) return;
             }
 
-            Vector2 finalVelocity = isBoosting ? velocity : velocity * 2f;
-            finalVelocity = finalVelocity.TruncatedBy(MaxSpeed);
-            position += finalVelocity * Game.FixedDeltaTime;
+            Vector2 extraVelocity = isBoosting ? rb.velocity : Vector2.zero;
+            extraVelocity = extraVelocity.TruncatedBy(MaxSpeed / 2f);
+            position += extraVelocity * Game.FixedDeltaTime;
 
             if (y < 0f)
             {
                 y = 0f;
-                velocity.y *= -1f;
+                rb.velocity.y *= -1f;
             }
             else if (y > 479f - 16f)
             {
                 y = 479f - 16f;
-                velocity.y *= -1f;
+                rb.velocity.y *= -1f;
             }
         }
 
-        public void Render(Graphics graphics)
+        void IRenderer.Render(Graphics graphics)
         {
             if (isBoosting)
             {
@@ -60,11 +65,11 @@ namespace Spaghetti
         {
             position = new Vector2(320f - 5f, 240f - 5f);
 
-            velocity = new Vector2(
-                InitialHorizontalSpeed * Math.Sign(velocity.x),
+            rb.velocity = new Vector2(
+                InitialHorizontalSpeed * Math.Sign(rb.velocity.x),
                 MaxInitialVerticalSpeed * (float)(Game.random.NextDouble() - 0.5) * 2f // random around = or - 0.15f;
             );
-            Console.WriteLine(Math.Sign(velocity.x));
+            Console.WriteLine(Math.Sign(rb.velocity.x));
 
             isBoosting = false;
             stunnedCounter = 1f;
@@ -73,7 +78,7 @@ namespace Spaghetti
         public void Resolve(float x, float y, float mx, float my)
         {
             position = new Vector2(x, y);
-            velocity = new Vector2(mx, my);
+            rb.velocity = new Vector2(mx, my);
             isBoosting = false;
         }
 

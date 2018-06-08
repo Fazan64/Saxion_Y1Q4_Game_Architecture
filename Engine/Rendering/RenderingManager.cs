@@ -39,8 +39,12 @@ namespace Engine
 
         public bool Contains(EngineObject engineObject)
         {
-            if (!(engineObject is IRenderer renderer)) return false;
-            return registered.Contains(renderer);
+            if (engineObject is IRenderer renderer)
+            {
+                return registered.Contains(renderer);
+            }
+
+            return false;
         }
     }
 }

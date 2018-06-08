@@ -14,10 +14,9 @@ namespace Spaghetti
             this.ball = ball;
 
             position = new Vector2(x - 8, ball.y - 32 + 8);
-            velocity = Vector2.zero;
         }
 
-        public override void Update()
+        void Update()
         {
             // input/events;
             // no input
@@ -25,7 +24,7 @@ namespace Spaghetti
             // move, track the ball's y;
             float factor = 1 - Math.Abs(x - ball.x) / 640.0f;
             float targetY = ball.y - 32 + 8;
-            y += factor * (targetY - y) / 125;
+            y += factor * (targetY - y) * Game.FixedDeltaTime;
 
             // detect hitting wall
             if (y < 0 + 4)

@@ -58,6 +58,7 @@
     <Compile Include="Engine\Rendering\IRenderer.cs" />
     <Compile Include="Engine\Rendering\RenderingManager.cs" />
     <Compile Include="Engine\Components\ImageRenderer.cs" />
+    <Compile Include="Engine\Components\Rigidbody.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\ball.png">

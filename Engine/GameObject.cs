@@ -9,7 +9,6 @@ namespace Engine
     {
         public string name { get; set; }
         public Vector2 position;
-        public Vector2 velocity;
 
         public readonly Components components;
         internal readonly Callbacks callbacks;
@@ -37,16 +36,11 @@ namespace Engine
 
         Callbacks IBehaviour.GetCallbacks() => callbacks;
 
-        public virtual void Update() 
-        {
-            position += velocity * Game.FixedDeltaTime;
-        }
-
         // Shortcuts
-        public T Get<T>()       where T : class => components.Get<T>();
+        public T Get<T>()       where T : class     => components.Get<T>();
         public T Add<T>()       where T : Component => components.Add<T>();
-        public bool Has<T>()    where T : class => components.Has<T>();
+        public bool Has<T>()    where T : class     => components.Has<T>();
         public T GetOrAdd<T>()  where T : Component => components.GetOrAdd<T>();
-        public void Remove<T>() where T : class => components.Remove<T>();
+        public void Remove<T>() where T : class     => components.Remove<T>();
     }
 }

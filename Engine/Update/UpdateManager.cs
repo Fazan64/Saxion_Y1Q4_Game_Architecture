@@ -14,8 +14,8 @@ namespace Engine
 
         public void Step()
         {
-            // Calling initializeActions may cause initializeActions.
-            // Makes sure the additional Initialize calls are also called.
+            // Calling startActions may cause more objects being created.
+            // Makes sure the additional Start calls are also called.
             while (startActions != null)
             {
                 Action copy = startActions;
@@ -50,8 +50,12 @@ namespace Engine
 
         public bool Contains(EngineObject engineObject)
         {
-            if (!(engineObject is IBehaviour behaviour)) return false; 
-            return registered.Contains(behaviour);
+            if (engineObject is IBehaviour behaviour)
+            {
+                return registered.Contains(behaviour);
+            }
+
+            return false;
         }
 
         private void Add(Callbacks callbacks)

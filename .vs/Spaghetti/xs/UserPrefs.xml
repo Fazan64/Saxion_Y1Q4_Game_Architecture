@@ -1,16 +1,13 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/GameObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Components/Rigidbody.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="149" Column="13" />
-      <File FileName="Engine/GameObject.cs" Line="39" Column="9" />
-      <File FileName="Engine/EngineObject.cs" Line="8" Column="54" />
-      <File FileName="sources/Ball.cs" Line="8" Column="39" />
-      <File FileName="Engine/Components/ImageRenderer.cs" Line="25" Column="37" />
-      <File FileName="Engine/Rendering/RenderingManager.cs" Line="16" Column="43" />
-      <File FileName="Engine/Update/UpdateManager.cs" Line="59" Column="1" />
-      <File FileName="Engine/Component.cs" Line="10" Column="17" />
-      <File FileName="sources/AiPaddle.cs" Line="13" Column="10" />
+      <File FileName="sources/Game.cs" Line="76" Column="10" />
+      <File FileName="Engine/GameObject.cs" Line="38" Column="9" />
+      <File FileName="Engine/EngineObject.cs" Line="13" Column="13" />
+      <File FileName="sources/Ball.cs" Line="27" Column="20" />
+      <File FileName="sources/AiPaddle.cs" Line="24" Column="13" />
       <File FileName="Engine/Components.cs" Line="34" Column="1" />
+      <File FileName="Engine/Components/Rigidbody.cs" Line="10" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
