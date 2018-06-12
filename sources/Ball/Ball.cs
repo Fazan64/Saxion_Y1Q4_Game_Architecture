@@ -5,7 +5,7 @@ using Engine;
 
 namespace Spaghetti
 {
-    class Ball : GameObject, IRenderer
+    class Ball : GameObject
     {
         private const float MaxSpeed = 300f;
         private const float InitialHorizontalSpeed = 200f;
@@ -15,6 +15,7 @@ namespace Spaghetti
         private float stunnedCounter = 0f;
 
         private Rigidbody rb;
+        private BallBoostEffectRenderer boostEffectRenderer;
 
         // TODO Won't have to make a constructor like this after transitioning to a component-based system.
         public Ball(string name) : base(name) {}
@@ -25,6 +26,9 @@ namespace Spaghetti
 
             rb = Get<Rigidbody>();
             rb.velocity.x = 10f;
+
+            boostEffectRenderer = GetOrAdd<BallBoostEffectRenderer>();
+            boostEffectRenderer.isOn = isBoosting;
 
             Reset();
 
@@ -53,14 +57,9 @@ namespace Spaghetti
                 y = 479f - 16f;
                 rb.velocity.y *= -1f;
             }
-        }
 
-        void IRenderer.Render(Graphics graphics)
-        {
-            if (isBoosting)
-            {
-                graphics.DrawEllipse(Pens.White, position.x - 5f, position.y - 5f, 26f, 26f);
-            }
+            // TODO do this in a framerate-based update, not the fixed-timestep one.
+            boostEffectRenderer.isOn = isBoosting;
         }
 
         public void Reset()
