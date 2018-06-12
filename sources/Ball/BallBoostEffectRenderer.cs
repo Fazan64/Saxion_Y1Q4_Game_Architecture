@@ -4,6 +4,7 @@ using Engine;
 
 namespace Spaghetti
 {
+    /// Draws a custom `boost` effect around its gameobject.
     public class BallBoostEffectRenderer : Component, IRenderer
     {
         public bool isOn { get; set; }
