@@ -29,6 +29,7 @@ namespace Engine
 
         private readonly UpdateManager updateManager;
         private readonly RenderingManager renderingManager;
+        private readonly EventsManager eventsManager;
 
         private bool isRunning = false;
 
@@ -41,6 +42,7 @@ namespace Engine
 
             updateManager = new UpdateManager();
             renderingManager = new RenderingManager();
+            eventsManager = new EventsManager();
 
             BackColor = System.Drawing.Color.Black; // background color
             DoubleBuffered = true; // avoid flickering
@@ -60,12 +62,19 @@ namespace Engine
         {
             updateManager.Add(engineObject);
             renderingManager.Add(engineObject);
+            eventsManager.Add(engineObject);
         }
 
         public void Remove(EngineObject engineObject)
         {
             updateManager.Remove(engineObject);
             renderingManager.Remove(engineObject);
+            eventsManager.Remove(engineObject);
+        }
+
+        internal void Post(IEngineEvent engineEvent)
+        {
+            eventsManager.Post(engineEvent);
         }
 
         private void Run()
@@ -78,7 +87,7 @@ namespace Engine
             float previous = stopwatch.ElapsedMilliseconds / 1000f;
             float lag = 0f;
 
-            while (isRunning) // frame based loop, unsteady
+            while (isRunning)
             {
                 float current = stopwatch.ElapsedMilliseconds / 1000f;
                 float elapsed = current - previous;
@@ -91,6 +100,7 @@ namespace Engine
 
                 while (lag >= FixedDeltaTime)
                 {
+                    eventsManager.DeliverEvents();
                     UpdateFixedTimestep();
                     lag -= FixedDeltaTime;
                 }

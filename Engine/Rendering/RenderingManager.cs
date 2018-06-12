@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Engine
 {
-    public class RenderingManager
+    internal class RenderingManager
     {
         private readonly HashSet<IRenderer> registered = new HashSet<IRenderer>();
 

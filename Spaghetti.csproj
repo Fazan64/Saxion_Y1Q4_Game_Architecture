@@ -60,6 +60,9 @@
     <Compile Include="Engine\Components\ImageRenderer.cs" />
     <Compile Include="Engine\Components\Rigidbody.cs" />
     <Compile Include="sources\MainLevel.cs" />
+    <Compile Include="Engine\Events\EngineEvent.cs" />
+    <Compile Include="Engine\Events\IEventReceiver.cs" />
+    <Compile Include="Engine\Events\EventsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\ball.png">
@@ -80,6 +83,8 @@
     <Folder Include="Engine\Update\" />
     <Folder Include="Engine\Rendering\" />
     <Folder Include="Engine\Components\" />
+    <Folder Include="Engine\Events\" />
+    <Folder Include="sources\Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

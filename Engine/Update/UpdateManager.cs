@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Engine
 {
-    public class UpdateManager
+    internal class UpdateManager
     {
         private Action startActions;
         private Action updateActions;

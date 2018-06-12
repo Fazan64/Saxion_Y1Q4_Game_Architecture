@@ -27,6 +27,8 @@ namespace Spaghetti
             rb.velocity.x = 10f;
 
             Reset();
+
+            new TestEvent("Some test data").Post();
         }
 
         void Update()
