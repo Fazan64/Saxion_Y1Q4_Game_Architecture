@@ -62,7 +62,7 @@
     <Compile Include="Engine\Events\EngineEvent.cs" />
     <Compile Include="Engine\Events\IEventReceiver.cs" />
     <Compile Include="Engine\Events\EventsManager.cs" />
-    <Compile Include="sources\Ball\Ball.cs" />
+    <Compile Include="sources\Ball\GameObject.cs" />
     <Compile Include="sources\Ball\BallBoostEffectRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

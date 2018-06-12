@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Engine;
 
 namespace Spaghetti
 {
@@ -10,9 +11,9 @@ namespace Spaghetti
         private Image image;
         private float x, y;
         private float mx, my;
-        private Ball ball;
+        private GameObject ball;
 
-        public UserPaddle(string name, string file, float x, Ball ball)
+        public UserPaddle(string name, string file, float x, GameObject ball)
         {
             this.name = name;
             this.image = Image.FromFile(file);

@@ -5,7 +5,7 @@ using Engine;
 
 namespace Spaghetti
 {
-    class Ball : GameObject
+    class Ball : Component
     {
         private const float MaxSpeed = 300f;
         private const float InitialHorizontalSpeed = 200f;
@@ -16,9 +16,6 @@ namespace Spaghetti
 
         private Rigidbody rb;
         private BallBoostEffectRenderer boostEffectRenderer;
-
-        // TODO Won't have to make a constructor like this after transitioning to a component-based system.
-        public Ball(string name) : base(name) {}
 
         void Start()
         {
@@ -45,16 +42,16 @@ namespace Spaghetti
 
             Vector2 extraVelocity = isBoosting ? rb.velocity : Vector2.zero;
             extraVelocity = extraVelocity.TruncatedBy(MaxSpeed / 2f);
-            position += extraVelocity * Game.FixedDeltaTime;
+            gameObject.position += extraVelocity * Game.FixedDeltaTime;
 
-            if (y < 0f)
+            if (gameObject.y < 0f)
             {
-                y = 0f;
+                gameObject.y = 0f;
                 rb.velocity.y *= -1f;
             }
-            else if (y > 479f - 16f)
+            else if (gameObject.y > 479f - 16f)
             {
-                y = 479f - 16f;
+                gameObject.y = 479f - 16f;
                 rb.velocity.y *= -1f;
             }
 
@@ -64,7 +61,7 @@ namespace Spaghetti
 
         public void Reset()
         {
-            position = new Vector2(320f - 5f, 240f - 5f);
+            gameObject.position = new Vector2(320f - 5f, 240f - 5f);
 
             rb.velocity = new Vector2(
                 InitialHorizontalSpeed * Math.Sign(rb.velocity.x),
@@ -78,9 +75,9 @@ namespace Spaghetti
 
         public void Resolve(float x, float y, float mx, float my)
         {
-            position    = new Vector2(x, y);
-            rb.velocity = new Vector2(mx, my);
-            isBoosting  = false;
+            gameObject.position = new Vector2(x, y);
+            rb.velocity         = new Vector2(mx, my);
+            isBoosting          = false;
         }
 
         public void SetBoost(bool value)

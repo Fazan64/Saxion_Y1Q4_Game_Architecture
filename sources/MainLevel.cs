@@ -4,14 +4,14 @@ using System.Drawing;
 
 namespace Spaghetti
 {
-    public class MainLevel : GameObject, IRenderer
+    public class MainLevel : Engine.GameObject, IRenderer
     {
         private Image b;
         private Image fontSheet;
         private uint leftScore, rightScore;
         private Vector2 boostZonePosition;
 
-        private Ball ball;
+        private GameObject ball;
         private AiPaddle leftPaddle;
         private AiPaddle rightPaddle; // TEMP. Also AI for now. TODO add a player-controlled paddle
 
@@ -25,7 +25,8 @@ namespace Spaghetti
 
         void Start()
         {
-            ball = new Ball("Ball");
+            ball = new GameObject("Ball");
+            ball.Add<Ball>();
             ball.Add<ImageRenderer>().SetImage("assets/ball.png");
             ball.Add<Rigidbody>();
 
@@ -43,7 +44,7 @@ namespace Spaghetti
             // TODO have the boost zone be its own gameobject
             if (ball.x < boostZonePosition.x + 16 && ball.x + 16 > boostZonePosition.x - 16 && ball.y < boostZonePosition.y + 16 && ball.y + 16 > boostZonePosition.y - 16)
             {
-                ball.SetBoost(true); // for 60 frames.... how long is that
+                ball.Get<Ball>().SetBoost(true); // for 60 frames.... how long is that
             }
 
             CheckScore();
@@ -66,14 +67,14 @@ namespace Spaghetti
                                                                                                // change y speed depending on hit offset in y
                 float dy = Math.Abs((leftPaddle.y - 32) - (ball.y + 8)) / 50.0f;
 
-                ball.Resolve(leftPaddle.x + 8, ball.y, +Math.Abs(ballRb.velocity.x), dy * ballRb.velocity.y); // hmm
+                ball.Get<Ball>().Resolve(leftPaddle.x + 8, ball.y, +Math.Abs(ballRb.velocity.x), dy * ballRb.velocity.y); // hmm
             }
 
             if (ball.x < rightPaddle.x + 8 && ball.x + 16 > rightPaddle.x && ball.y < rightPaddle.y + 64 && ball.y + 16 > rightPaddle.y)
             {
                 Console.WriteLine("Right Hit");
                 float dy = Math.Abs((rightPaddle.y - 32) - (ball.y + 8)) / 50.0f;
-                ball.Resolve(rightPaddle.x - 16, ball.y, -Math.Abs(ballRb.velocity.x), dy * ballRb.velocity.y); // awful, but who cares, no one is gonna see this.
+                ball.Get<Ball>().Resolve(rightPaddle.x - 16, ball.y, -Math.Abs(ballRb.velocity.x), dy * ballRb.velocity.y); // awful, but who cares, no one is gonna see this.
             }
         }
 
@@ -85,12 +86,12 @@ namespace Spaghetti
             if (ball.position.x < 0f) // left score
             {
                 rightScore++;
-                ball.Reset();
+                ball.Get<Ball>().Reset();
             }
             else if (ball.position.x > 639f - 16f) // right score
             {
                 leftScore++;
-                ball.Reset();
+                ball.Get<Ball>().Reset();
             }
         }
 

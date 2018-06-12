@@ -1,12 +1,14 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sources/Ball/BallBoostEffectRenderer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sources/UserPaddle.cs">
     <Files>
       <File FileName="sources/Game.cs" Line="98" Column="17" />
       <File FileName="Engine/Events/EventsManager.cs" Line="87" Column="1" />
       <File FileName="Engine/EngineObject.cs" Line="2" Column="22" />
       <File FileName="Engine/Events/IEventReceiver.cs" Line="8" Column="6" />
-      <File FileName="sources/Ball/Ball.cs" Line="1" Column="1" />
-      <File FileName="sources/Ball/BallBoostEffectRenderer.cs" Line="2" Column="14" />
+      <File FileName="sources/Ball/GameObject.cs" Line="77" Column="10" />
+      <File FileName="sources/MainLevel.cs" Line="31" Column="33" />
+      <File FileName="sources/AiPaddle.cs" Line="8" Column="24" />
+      <File FileName="sources/UserPaddle.cs" Line="4" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,9 +22,8 @@
                 <Node name="Utils" expanded="True" />
               </Node>
               <Node name="sources" expanded="True">
-                <Node name="Ball" expanded="True">
-                  <Node name="BallBoostEffectRenderer.cs" selected="True" />
-                </Node>
+                <Node name="Ball" expanded="True" />
+                <Node name="UserPaddle.cs" selected="True" />
               </Node>
             </Node>
           </Node>

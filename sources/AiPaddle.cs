@@ -7,9 +7,9 @@ namespace Spaghetti
 {
     class AiPaddle : GameObject
     {
-        private Ball ball;
+        private GameObject ball;
 
-        public AiPaddle(string name, float x, Ball ball) : base(name)
+        public AiPaddle(string name, float x, GameObject ball) : base(name)
         {
             this.ball = ball;
 
