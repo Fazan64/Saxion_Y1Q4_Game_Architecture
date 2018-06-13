@@ -4,12 +4,10 @@ using System.Drawing;
 
 namespace Spaghetti
 {
-    public class MainLevel : Engine.GameObject, IRenderer
+    public class MainLevel : GameObject, IRenderer, IEventReceiver<PointScoreEvent>
     {
-        private Image b;
         private Image fontSheet;
         private uint leftScore, rightScore;
-        private Vector2 boostZonePosition;
 
         private GameObject ball;
         private AiPaddle leftPaddle;
@@ -18,9 +16,6 @@ namespace Spaghetti
         public MainLevel() : base("MainLevel")
         {
             fontSheet = Image.FromFile("assets/digits.png");
-            b = Image.FromFile("assets/booster.png");
-
-            boostZonePosition = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
         }
 
         void Start()
@@ -35,26 +30,41 @@ namespace Spaghetti
 
             rightPaddle = new AiPaddle("Right", 639 - 20, ball);
             rightPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
+
+            // Boost zone
+            var go = new GameObject("BoostZone");
+
+            go.Add<BoostZone>().ball = ball;
+
+            var imageRenderer = go.Add<ImageRenderer>();
+            imageRenderer.SetImage("assets/booster.png");
+            imageRenderer.pivot = Vector2.half;
+
+            go.position = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
         }
 
         void Update()
         {
             CheckPaddleHit();
-
-            // TODO have the boost zone be its own gameobject
-            if (ball.x < boostZonePosition.x + 16 && ball.x + 16 > boostZonePosition.x - 16 && ball.y < boostZonePosition.y + 16 && ball.y + 16 > boostZonePosition.y - 16)
-            {
-                ball.Get<Ball>().SetBoost(true); // for 60 frames.... how long is that
-            }
-
-            CheckScore();
         }
 
         void IRenderer.Render(Graphics graphics)
         {
             // BUG: Start is not guarranteed to be called before the first Render.
-            graphics.DrawImage(b, boostZonePosition.x - 16, boostZonePosition.y - 16);
+            //graphics.DrawImage(b, boostZonePosition.x - 16, boostZonePosition.y - 16);
             DisplayScore(graphics);
+        }
+
+        public void On(PointScoreEvent pointScore)
+        {
+            if (pointScore.rightPlayerScored)
+            {
+                rightScore++;
+            }
+            else
+            {
+                leftScore++;
+            }
         }
 
         private void CheckPaddleHit()
@@ -75,23 +85,6 @@ namespace Spaghetti
                 Console.WriteLine("Right Hit");
                 float dy = Math.Abs((rightPaddle.y - 32) - (ball.y + 8)) / 50.0f;
                 ball.Get<Ball>().Resolve(rightPaddle.x - 16, ball.y, -Math.Abs(ballRb.velocity.x), dy * ballRb.velocity.y); // awful, but who cares, no one is gonna see this.
-            }
-        }
-
-        private void CheckScore()
-        {
-            float x = ball.position.x;
-            float y = ball.y;
-
-            if (ball.position.x < 0f) // left score
-            {
-                rightScore++;
-                ball.Get<Ball>().Reset();
-            }
-            else if (ball.position.x > 639f - 16f) // right score
-            {
-                leftScore++;
-                ball.Get<Ball>().Reset();
             }
         }
 

@@ -5,7 +5,9 @@ using Engine;
 
 namespace Spaghetti
 {
-    class Ball : Component
+    public class Ball : Component, 
+        IEventReceiver<PointScoreEvent>,
+        IEventReceiver<BallEnteredBoostZoneEvent>
     {
         private const float MaxSpeed = 300f;
         private const float InitialHorizontalSpeed = 200f;
@@ -44,22 +46,26 @@ namespace Spaghetti
             extraVelocity = extraVelocity.TruncatedBy(MaxSpeed / 2f);
             gameObject.position += extraVelocity * Game.FixedDeltaTime;
 
-            if (gameObject.y < 0f)
-            {
-                gameObject.y = 0f;
-                rb.velocity.y *= -1f;
-            }
-            else if (gameObject.y > 479f - 16f)
-            {
-                gameObject.y = 479f - 16f;
-                rb.velocity.y *= -1f;
-            }
+            BounceOffHorizontalWalls();
+            CheckScore();
 
             // TODO do this in a framerate-based update, not the fixed-timestep one.
             boostEffectRenderer.isOn = isBoosting;
         }
 
-        public void Reset()
+        public void On(PointScoreEvent pointScore)
+        {
+            Reset();
+        }
+
+        public void On(BallEnteredBoostZoneEvent eventData)
+        {
+            if (eventData.ball != gameObject) return;
+
+            isBoosting = true;
+        }
+
+        private void Reset()
         {
             gameObject.position = new Vector2(320f - 5f, 240f - 5f);
 
@@ -80,9 +86,34 @@ namespace Spaghetti
             isBoosting          = false;
         }
 
-        public void SetBoost(bool value)
+        // TODO ? Use regular collision handling for this.
+        private void BounceOffHorizontalWalls()
         {
-            isBoosting = value;
+            float topBound = 0f;
+            float bottomBound = game.size.y - 1f - 16f;
+
+            if (gameObject.y < topBound)
+            {
+                gameObject.y = topBound;
+                rb.velocity.y *= -1f;
+            }
+            else if (gameObject.y > bottomBound)
+            {
+                gameObject.y = bottomBound;
+                rb.velocity.y *= -1f;
+            }
+        }
+
+        private void CheckScore()
+        {
+            if (gameObject.position.x < 0f) // left score
+            {
+                PointScoreEvent.rightScored.Post();
+            }
+            else if (gameObject.position.x > game.size.x - 1f - 16f) // right score
+            {
+                PointScoreEvent.leftScored.Post();
+            }
         }
     }
 }

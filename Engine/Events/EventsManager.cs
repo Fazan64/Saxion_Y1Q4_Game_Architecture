@@ -20,7 +20,7 @@ namespace Engine
         {
             foreach (IEventReceiverRegisterer registerer in registerers)
             {
-                if (registerer.Add(engineObject)) return;
+                registerer.Add(engineObject);
             }
         }
 
@@ -28,7 +28,7 @@ namespace Engine
         {
             foreach (IEventReceiverRegisterer registerer in registerers)
             {
-                if (registerer.Remove(engineObject)) return;
+                registerer.Remove(engineObject);
             }
         }
 

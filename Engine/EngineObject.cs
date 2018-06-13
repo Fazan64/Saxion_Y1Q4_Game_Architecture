@@ -3,11 +3,19 @@ using NUnit.Framework;
 
 namespace Engine
 {
-    public class EngineObject
+    public class EngineObject : IBehaviour
     {
         public bool isDestroyed { get; private set; }
 
         protected Game game => Game.main;
+
+        private readonly Callbacks callbacks;
+        Callbacks IBehaviour.GetCallbacks() => callbacks;
+
+        public EngineObject()
+        {
+            callbacks = new Callbacks(this);
+        }
 
         public void Destroy()
         {

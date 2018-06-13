@@ -5,13 +5,12 @@ using System.Diagnostics;
 
 namespace Engine
 {
-    public class GameObject : EngineObject, IBehaviour
+    public class GameObject : EngineObject
     {
         public string name { get; set; }
         public Vector2 position;
 
         public readonly Components components;
-        internal readonly Callbacks callbacks;
 
         public float x
         {
@@ -26,15 +25,12 @@ namespace Engine
 
         public GameObject(string name)
         {
-            callbacks  = new Callbacks(this);
             components = new Components(this);
 
             this.name = name;
 
             Game.main.Add(this);
         }
-
-        Callbacks IBehaviour.GetCallbacks() => callbacks;
 
         // Shortcuts
         public T Get<T>()       where T : class     => components.Get<T>();

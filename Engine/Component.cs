@@ -5,16 +5,11 @@ namespace Engine
     public class Component : EngineObject, IBehaviour
     {
         public GameObject gameObject;
-        internal readonly Callbacks callbacks;
 
         internal Component()
         {
-            callbacks = new Callbacks(this);
-
             Game.main.Add(this);
         }
-
-        Callbacks IBehaviour.GetCallbacks() => callbacks;
 
         // Shortcuts for inheritors.
         protected T Get<T>()       where T : class     => gameObject.components.Get<T>();
