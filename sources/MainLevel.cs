@@ -31,16 +31,7 @@ namespace Spaghetti
             rightPaddle = new AiPaddle("Right", 639 - 20, ball);
             rightPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
 
-            // Boost zone
-            var go = new GameObject("BoostZone");
-
-            go.Add<BoostZone>().ball = ball;
-
-            var imageRenderer = go.Add<ImageRenderer>();
-            imageRenderer.SetImage("assets/booster.png");
-            imageRenderer.pivot = Vector2.half;
-
-            go.position = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
+            AddBooster();
         }
 
         void Update()
@@ -110,6 +101,21 @@ namespace Spaghetti
                 Rectangle rect = new Rectangle(digit * fontSheet.Width / 10, 0, fontSheet.Width / 10, fontSheet.Height);
                 graphics.DrawImage(fontSheet, rightX + d * fontSheet.Width / 10, y, rect, GraphicsUnit.Pixel);
             }
+        }
+
+        private void AddBooster()
+        {
+            // Boost zone
+            var go = new GameObject("Booster");
+
+            // TODO Add the collision detection engine to remove this dependency.
+            go.Add<BoostZone>().ball = ball;
+
+            var imageRenderer = go.Add<ImageRenderer>();
+            imageRenderer.SetImage("assets/booster.png");
+            imageRenderer.pivot = Vector2.half;
+
+            go.position = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
         }
     }
 }

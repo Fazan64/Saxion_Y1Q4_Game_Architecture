@@ -23,18 +23,12 @@ namespace Spaghetti
 
             // move, track the ball's y;
             float factor = 1f - Math.Abs(x - ball.x) / game.size.x;
-            float targetY = ball.y - 32 + 8;
+            float targetY = ball.y - 32f + 8f;
             y += factor * (targetY - y) * Game.FixedDeltaTime;
 
-            // detect hitting wall
-            if (y < 0 + 4)
-            {
-                y = 0 + 4;
-            }
-            else if (y > 479 - 4 - 64)
-            {
-                y = 479 - 4 - 64;
-            }
+            float minY = 0f + 4f;
+            float maxY = game.size.y - 1f - 4f - 64f;
+            y = Mathf.Clamp(y, minY, maxY);
         }
     }
 }

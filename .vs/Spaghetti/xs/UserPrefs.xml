@@ -1,14 +1,11 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Components/ImageRenderer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sources/AiPaddle.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="63" Column="34" />
-      <File FileName="Engine/EngineObject.cs" Line="18" Column="10" />
-      <File FileName="Engine/GameObject.cs" Line="41" Column="6" />
-      <File FileName="Engine/Component.cs" Line="10" Column="10" />
-      <File FileName="sources/MainLevel.cs" Line="35" Column="45" />
-      <File FileName="Engine/Components/ImageRenderer.cs" Line="10" Column="43" />
-      <File FileName="sources/BoostZone/BoostZone.cs" Line="20" Column="27" />
-      <File FileName="sources/Ball/Ball.cs" Line="20" Column="30" />
+      <File FileName="sources/Game.cs" Line="45" Column="49" />
+      <File FileName="sources/MainLevel.cs" Line="20" Column="9" />
+      <File FileName="Engine/GameObject.cs" Line="29" Column="13" />
+      <File FileName="Engine/Components/Rigidbody.cs" Line="10" Column="10" />
+      <File FileName="sources/AiPaddle.cs" Line="20" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,9 +13,7 @@
           <Node name="Spaghetti" expanded="True">
             <Node name="Spaghetti" expanded="True">
               <Node name="Engine" expanded="True">
-                <Node name="Components" expanded="True">
-                  <Node name="ImageRenderer.cs" selected="True" />
-                </Node>
+                <Node name="Components" expanded="True" />
                 <Node name="Events" expanded="True" />
                 <Node name="Rendering" expanded="True" />
                 <Node name="Update" expanded="True" />
@@ -28,6 +23,7 @@
                 <Node name="Ball" expanded="True" />
                 <Node name="BoostZone" expanded="True" />
                 <Node name="Events" expanded="True" />
+                <Node name="AiPaddle.cs" selected="True" />
               </Node>
             </Node>
           </Node>
