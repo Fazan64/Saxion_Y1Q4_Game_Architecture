@@ -62,11 +62,12 @@
     <Compile Include="Engine\Events\EngineEvent.cs" />
     <Compile Include="Engine\Events\IEventReceiver.cs" />
     <Compile Include="Engine\Events\EventsManager.cs" />
-    <Compile Include="sources\Ball\Ball.cs" />
-    <Compile Include="sources\Ball\BallBoostEffectRenderer.cs" />
     <Compile Include="sources\Events\PointScoreEvent.cs" />
-    <Compile Include="sources\BoostZone\BoostZone.cs" />
     <Compile Include="sources\Events\BallEnteredBoostZoneEvent.cs" />
+    <Compile Include="sources\Components\Ball\Ball.cs" />
+    <Compile Include="sources\Components\Ball\BallBoostEffectRenderer.cs" />
+    <Compile Include="sources\Components\BoostZone\BoostZone.cs" />
+    <Compile Include="sources\Components\ScoreTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\ball.png">
@@ -89,8 +90,9 @@
     <Folder Include="Engine\Components\" />
     <Folder Include="Engine\Events\" />
     <Folder Include="sources\Events\" />
-    <Folder Include="sources\Ball\" />
-    <Folder Include="sources\BoostZone\" />
+    <Folder Include="sources\Components\" />
+    <Folder Include="sources\Components\Ball\" />
+    <Folder Include="sources\Components\BoostZone\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

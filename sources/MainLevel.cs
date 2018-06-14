@@ -4,19 +4,13 @@ using System.Drawing;
 
 namespace Spaghetti
 {
-    public class MainLevel : GameObject, IRenderer, IEventReceiver<PointScoreEvent>
+    public class MainLevel : GameObject
     {
-        private Image fontSheet;
-        private uint leftScore, rightScore;
-
         private GameObject ball;
         private AiPaddle leftPaddle;
         private AiPaddle rightPaddle; // TEMP. Also AI for now. TODO add a player-controlled paddle
 
-        public MainLevel() : base("MainLevel")
-        {
-            fontSheet = Image.FromFile("assets/digits.png");
-        }
+        public MainLevel() : base("MainLevel") {}
 
         void Start()
         {
@@ -32,30 +26,13 @@ namespace Spaghetti
             rightPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
 
             AddBooster();
+
+            new GameObject("ScoreTracker").Add<ScoreTracker>();
         }
 
         void Update()
         {
             CheckPaddleHit();
-        }
-
-        void IRenderer.Render(Graphics graphics)
-        {
-            // BUG: Start is not guarranteed to be called before the first Render.
-            //graphics.DrawImage(b, boostZonePosition.x - 16, boostZonePosition.y - 16);
-            DisplayScore(graphics);
-        }
-
-        public void On(PointScoreEvent pointScore)
-        {
-            if (pointScore.rightPlayerScored)
-            {
-                rightScore++;
-            }
-            else
-            {
-                leftScore++;
-            }
         }
 
         private void CheckPaddleHit()
@@ -76,30 +53,6 @@ namespace Spaghetti
                 Console.WriteLine("Right Hit");
                 float dy = Math.Abs((rightPaddle.y - 32) - (ball.y + 8)) / 50.0f;
                 ball.Get<Ball>().Resolve(rightPaddle.x - 16, ball.y, -Math.Abs(ballRb.velocity.x), dy * ballRb.velocity.y); // awful, but who cares, no one is gonna see this.
-            }
-        }
-
-        private void DisplayScore(Graphics graphics)
-        {
-            int digits = 2;
-            int leftX = 240; // left score first
-            int y = 25;
-            string leftScore = "000" + this.leftScore.ToString(); // convert to string and add preceeding 000
-            for (int d = 0; d < digits; d++)
-            { // 3 digits left to right
-                int digit = leftScore[leftScore.Length - digits + d] - 48; // '0' => 0 etc
-                Rectangle rect = new Rectangle(digit * fontSheet.Width / 10, 0, fontSheet.Width / 10, fontSheet.Height);
-                graphics.DrawImage(fontSheet, leftX + d * fontSheet.Width / 10, y, rect, GraphicsUnit.Pixel);
-            }
-
-            // oh no, same thing for right score !!!
-            int rightX = 639 - 240 - digits * fontSheet.Width / 10;
-            string rightScore = "000" + this.rightScore.ToString(); // convert to string and add preceeding 000
-            for (int d = 0; d < digits; d++)
-            { // 3 digits left to right
-                int digit = rightScore[rightScore.Length - digits + d] - 48; // '0' => 0 etc
-                Rectangle rect = new Rectangle(digit * fontSheet.Width / 10, 0, fontSheet.Width / 10, fontSheet.Height);
-                graphics.DrawImage(fontSheet, rightX + d * fontSheet.Width / 10, y, rect, GraphicsUnit.Pixel);
             }
         }
 

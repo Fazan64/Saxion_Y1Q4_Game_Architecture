@@ -1,11 +1,10 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sources/AiPaddle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sources/MainLevel.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="45" Column="49" />
-      <File FileName="sources/MainLevel.cs" Line="20" Column="9" />
-      <File FileName="Engine/GameObject.cs" Line="29" Column="13" />
-      <File FileName="Engine/Components/Rigidbody.cs" Line="10" Column="10" />
-      <File FileName="sources/AiPaddle.cs" Line="20" Column="10" />
+      <File FileName="sources/Game.cs" Line="83" Column="29" />
+      <File FileName="sources/MainLevel.cs" Line="16" Column="10" />
+      <File FileName="Engine/Components/Rigidbody.cs" Line="4" Column="2" />
+      <File FileName="sources/Components/ScoreTracker.cs" Line="9" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,10 +19,8 @@
                 <Node name="Utils" expanded="True" />
               </Node>
               <Node name="sources" expanded="True">
-                <Node name="Ball" expanded="True" />
-                <Node name="BoostZone" expanded="True" />
-                <Node name="Events" expanded="True" />
-                <Node name="AiPaddle.cs" selected="True" />
+                <Node name="Components" expanded="True" />
+                <Node name="MainLevel.cs" selected="True" />
               </Node>
             </Node>
           </Node>
