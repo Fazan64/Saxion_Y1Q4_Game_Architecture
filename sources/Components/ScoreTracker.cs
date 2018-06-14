@@ -47,7 +47,7 @@ namespace Spaghetti
             DrawNumber(graphics, rightScore, middle + middleOffset        , y, numDigits);
         }
 
-        private void DrawNumber(Graphics graphics, uint number, float x, float y, int numDigitsToDraw = 3)
+        private void DrawNumber(Graphics graphics, uint number, float x, float y, int numDigitsToDraw)
         {
             const int NumDigits = 10;
             int digitWidth = fontSheet.Width / NumDigits;
@@ -55,10 +55,7 @@ namespace Spaghetti
 
             string digits = number.ToString("D" + numDigitsToDraw);
 
-            if (numDigitsToDraw < 0) numDigitsToDraw = digits.Length;
-            else numDigitsToDraw = Math.Min(numDigitsToDraw, digits.Length);
-
-            for (int digitIndex = 0; digitIndex < numDigitsToDraw; ++digitIndex)
+            for (int digitIndex = 0; digitIndex < digits.Length; ++digitIndex)
             {
                 int digit = digits[digitIndex] - '0';
                 var sourceRect = new Rectangle(digit * digitWidth, 0, digitWidth, digitHeight);
