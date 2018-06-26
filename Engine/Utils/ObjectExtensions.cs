@@ -5,23 +5,24 @@ namespace System.Reflection
 {
     public static class ObjectExtensions
     {
-        public static Delegate GetDelegate<T>(this Object obj, string methodName)
+        public static TDelegate GetDelegate<TDelegate>(this Object obj, string methodName) 
+            where TDelegate : class
         {
             MethodInfo info = obj
                 .GetType()
                 .GetMethod(
                     methodName,
-                    BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
                 );
 
             if (info != null)
             {
                 return Delegate.CreateDelegate(
-                    typeof(T),
+                    typeof(TDelegate),
                     obj,
                     info,
                     throwOnBindFailure: false
-                );
+                ) as TDelegate;
             }
 
             CheckForWrongMethodNameCase(obj, methodName);

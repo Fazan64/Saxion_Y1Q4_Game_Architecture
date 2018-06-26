@@ -28,6 +28,7 @@ namespace Engine
         public static readonly Random random = new Random(1);
 
         private readonly UpdateManager updateManager;
+        private readonly PhysicsManager physicsManager;
         private readonly RenderingManager renderingManager;
         private readonly EventsManager eventsManager;
 
@@ -40,9 +41,10 @@ namespace Engine
             Assert.IsNull(main);
             main = this;
 
-            updateManager = new UpdateManager();
+            updateManager    = new UpdateManager();
+            physicsManager   = new PhysicsManager();
             renderingManager = new RenderingManager();
-            eventsManager = new EventsManager();
+            eventsManager    = new EventsManager();
 
             BackColor = System.Drawing.Color.Black; // background color
             DoubleBuffered = true; // avoid flickering
@@ -61,6 +63,7 @@ namespace Engine
         public void Add(EngineObject engineObject)
         {
             updateManager.Add(engineObject);
+            physicsManager.Add(engineObject);
             renderingManager.Add(engineObject);
             eventsManager.Add(engineObject);
         }
@@ -68,11 +71,12 @@ namespace Engine
         public void Remove(EngineObject engineObject)
         {
             updateManager.Remove(engineObject);
+            physicsManager.Remove(engineObject);
             renderingManager.Remove(engineObject);
             eventsManager.Remove(engineObject);
         }
 
-        internal void Post(IEngineEvent engineEvent)
+        internal void Post(IBroadcastEvent engineEvent)
         {
             eventsManager.Post(engineEvent);
         }
@@ -94,18 +98,19 @@ namespace Engine
                 lag += elapsed;
                 previous = current;
 
-                Debug.WriteLine(1f / elapsed);
+                //Debug.WriteLine($"fps: {1f / elapsed}");
 
                 Application.DoEvents();// pump form event queue, doing nothing with then
 
                 while (lag >= FixedDeltaTime)
                 {
+                    physicsManager.Step();
                     eventsManager.DeliverEvents();
                     UpdateFixedTimestep();
+
                     lag -= FixedDeltaTime;
                 }
 
-                //Debug.WriteLine("refresh");
                 Refresh(); // causes OnPaint event
             }
         }

@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-    public interface IEventReceiver<T> where T : EngineEvent<T>
+    public interface IEventReceiver<T> where T : BroadcastEvent<T>
     {
         void On(T eventData);
     }

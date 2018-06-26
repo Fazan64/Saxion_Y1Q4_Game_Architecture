@@ -8,7 +8,7 @@ namespace Engine
 {
     internal class EventsManager
     {
-        private readonly Queue<IEngineEvent> events = new Queue<IEngineEvent>();
+        private readonly Queue<IBroadcastEvent> events = new Queue<IBroadcastEvent>();
         private readonly IEventReceiverRegisterer[] registerers;
 
         public EventsManager()
@@ -32,14 +32,14 @@ namespace Engine
             }
         }
 
-        public void Post(IEngineEvent engineEvent)
+        public void Post(IBroadcastEvent engineEvent)
         {
             events.Enqueue(engineEvent);
         }
 
         public void DeliverEvents()
         {
-            foreach (IEngineEvent engineEvent in events) engineEvent.Deliver();
+            foreach (IBroadcastEvent engineEvent in events) engineEvent.Deliver();
             events.Clear();
         }
 
@@ -54,7 +54,7 @@ namespace Engine
 
         private static IEnumerable<Type> GetEventTypes()
         {
-            Type eventBaseType = typeof(IEngineEvent);
+            Type eventBaseType = typeof(IBroadcastEvent);
 
             return AppDomain.CurrentDomain
                 .GetAssemblies()
@@ -78,13 +78,13 @@ namespace Engine
         /// Registers event receivers of type TEvent, 
         /// i.e registers objects which implement IEventReceiver<TEvent>.
         private class EventReceiverRegisterer<TEvent> : IEventReceiverRegisterer
-            where TEvent : EngineEvent<TEvent>
+            where TEvent : BroadcastEvent<TEvent>
         {
             public bool Add(EngineObject engineObject)
             {
                 if (engineObject is IEventReceiver<TEvent> receiver)
                 {
-                    EngineEvent<TEvent>.handlers += receiver.On;
+                    BroadcastEvent<TEvent>.OnDeliver += receiver.On;
                     return true;
                 }
 
@@ -95,7 +95,7 @@ namespace Engine
             {
                 if (engineObject is IEventReceiver<TEvent> receiver)
                 {
-                    EngineEvent<TEvent>.handlers -= receiver.On;
+                    BroadcastEvent<TEvent>.OnDeliver -= receiver.On;
                     return true;
                 }
 

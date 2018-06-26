@@ -18,12 +18,15 @@ namespace Spaghetti
             ball.Add<Ball>();
             ball.Add<ImageRenderer>().SetImage("assets/ball.png");
             ball.Add<Rigidbody>();
+            ball.Add<AABB>().rect = new Rect(-4f, -4f, 8f, 8f);
 
             leftPaddle = new AiPaddle("Left", 20, ball);
             leftPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
+            leftPaddle.Add<AABB>().rect = new Rect(-4f, -32f, 8f, 64f);
 
             rightPaddle = new AiPaddle("Right", 639 - 20, ball);
             rightPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
+            rightPaddle.Add<AABB>().rect = new Rect(-4f, -32f, 8f, 64f);
 
             AddBooster();
 

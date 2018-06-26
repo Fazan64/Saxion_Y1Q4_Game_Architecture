@@ -1,32 +1,16 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sources/MainLevel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Physics/Colliders/AABB.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="83" Column="29" />
-      <File FileName="sources/MainLevel.cs" Line="16" Column="10" />
-      <File FileName="Engine/Components/Rigidbody.cs" Line="4" Column="2" />
-      <File FileName="sources/Components/ScoreTracker.cs" Line="9" Column="33" />
+      <File FileName="sources/Game.cs" Line="101" Column="19" />
+      <File FileName="Engine/Physics/CollisionsHelper.cs" Line="16" Column="10" />
+      <File FileName="Engine/Physics/PhysicsManager.cs" Line="73" Column="49" />
+      <File FileName="Engine/Physics/GameObjectPhysics.cs" Line="87" Column="40" />
+      <File FileName="Engine/Components/Rigidbody.cs" Line="29" Column="10" />
+      <File FileName="sources/MainLevel.cs" Line="51" Column="41" />
+      <File FileName="Engine/Physics/Colliders/AABB.cs" Line="16" Column="34" />
+      <File FileName="Engine/Physics/Collider.cs" Line="6" Column="6" />
+      <File FileName="Engine/Components.cs" Line="32" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Spaghetti" expanded="True">
-            <Node name="Spaghetti" expanded="True">
-              <Node name="Engine" expanded="True">
-                <Node name="Components" expanded="True" />
-                <Node name="Events" expanded="True" />
-                <Node name="Rendering" expanded="True" />
-                <Node name="Update" expanded="True" />
-                <Node name="Utils" expanded="True" />
-              </Node>
-              <Node name="sources" expanded="True">
-                <Node name="Components" expanded="True" />
-                <Node name="MainLevel.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

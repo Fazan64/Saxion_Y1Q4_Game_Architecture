@@ -3,15 +3,15 @@ using NUnit.Framework;
 
 namespace Engine
 {
-    internal interface IEngineEvent
+    internal interface IBroadcastEvent
     {
         void Deliver();
     }
 
-    public abstract class EngineEvent<T> : IEngineEvent where T : EngineEvent<T>
+    public abstract class BroadcastEvent<T> : IBroadcastEvent where T : BroadcastEvent<T>
     {
         public delegate void Handler(T eventData);
-        public static event Handler handlers;
+        public static event Handler OnDeliver;
 
         private bool isPosted;
         private bool isDelivered;
@@ -23,15 +23,15 @@ namespace Engine
             isPosted = true;
         }
 
-        void IEngineEvent.Deliver()
+        void IBroadcastEvent.Deliver()
         {
             Assert.IsFalse(isDelivered, $"{this} has already been delivered!");
-            handlers?.Invoke((T)this);
+            OnDeliver?.Invoke((T)this);
             isDelivered = true;;
         }
     }
 
-    public class TestEvent : EngineEvent<TestEvent>
+    public class TestEvent : BroadcastEvent<TestEvent>
     {
         public readonly string testData;
 
@@ -39,11 +39,5 @@ namespace Engine
         {
             this.testData = testData;
         }
-    }
-
-    public class CollisionEvent : EngineEvent<CollisionEvent>
-    {
-        public readonly GameObject a;
-        public readonly GameObject b;
     }
 }

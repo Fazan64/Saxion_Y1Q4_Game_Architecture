@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 
 namespace Engine
 {
@@ -25,16 +27,11 @@ namespace Engine
 
         public Component[] GetAll() => list.ToArray();
 
-        public bool Has<T>() where T : class => (Get<T>() != null);
-
         public T Add<T>() where T : Component
         {
-            if (Has<T>())
-            {
-                throw new InvalidOperationException($"{gameObject} already has {typeof(T)}!");
-            }
+            Assert.IsFalse(Has<T>(), $"{gameObject} already has {typeof(T)}!");
 
-            var component = Activator.CreateInstance<T>();
+            T component = Activator.CreateInstance<T>();
             component.gameObject = gameObject;
 
             list.Add(component);
@@ -46,23 +43,37 @@ namespace Engine
 
         public T Get<T>() where T : class
         {
-            var result = list.Find(component => component is T);
-            return result as T;
+            return list
+                .Select(c => c as T)
+                .Where(c => c != null)
+                .FirstOrDefault();
+        }
+
+        public T[] GetAll<T>() where T : class
+        {
+            return list
+                .Select(c => c as T)
+                .Where(c => c != null)
+                .ToArray();
         }
 
         public void Remove<T>() where T : class
         {
-            for (int i = 0; i < list.Count; ++i)
+            for (int i = list.Count - 1; i >= 0; --i)
             {
-                var component = list[i];
+                if (i >= list.Count) continue;
+
+                Component component = list[i];
                 if (component is T)
                 {
                     list.RemoveAt(i);
-                    i -= 1;
                     OnComponentRemoved?.Invoke(gameObject, component);
                 }
             }
         }
+
+        public bool Has<T>() where T : class => (Get<T>() != null);
+
     }
 
     public static class ComponentsExtensionsGetOrAdd

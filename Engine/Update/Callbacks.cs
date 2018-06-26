@@ -11,38 +11,30 @@ namespace Engine
 
         private readonly Lazy<Action> _start;
         private readonly Lazy<Action> _update;
-        private readonly Lazy<Action<GameObject>> _onCollision;
-        //readonly Lazy<Action<Collision>>  _onCollisionDetailed;
+        private readonly Lazy<Action<Collision>> _onCollision;
 
-        // ICallbacks implementation
         public Action start => _start.Value;
         public Action update => _update.Value;
-        public Action<GameObject> onCollision => _onCollision.Value;
-        //public Action<Collision> onCollisionDetailed => _onCollisionDetailed.Value;
+        public Action<Collision> onCollision => _onCollision.Value;
 
         public Callbacks(Object host)
         {
             this.host = host;
 
             _start = new Lazy<Action>(
-                () => (Action)host.GetDelegate<Action>("Start"),
+                () => host.GetDelegate<Action>("Start"),
                 isThreadSafe: false
             );
 
             _update = new Lazy<Action>(
-                () => (Action)host.GetDelegate<Action>("Update"),
+                () => host.GetDelegate<Action>("Update"),
                 isThreadSafe: false
             );
 
-            _onCollision = new Lazy<Action<GameObject>>(
-                () => (Action<GameObject>)host.GetDelegate<Action<GameObject>>("OnCollision"),
+            _onCollision = new Lazy<Action<Collision>>(
+                () => host.GetDelegate<Action<Collision>>("OnCollision"),
                 isThreadSafe: false
             );
-
-            /*_onCollisionDetailed = new Lazy<Action<Collision>>(
-                () => (Action<Collision>)host.GetDelegate<Action<Collision>>("OnCollisionDetailed"),
-                isThreadSafe: false
-            );*/
         }
     }
 }

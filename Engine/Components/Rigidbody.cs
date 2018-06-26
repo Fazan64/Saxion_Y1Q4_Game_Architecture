@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Engine
 {
@@ -6,13 +7,27 @@ namespace Engine
     {
         public Vector2 velocity;
 
-        // TODO Start with having bounds directly on the rb. 
-        // Might extract a Collider class later.
-        // Resolve collision and post a Collision event when bounds overlap.
-
-        void Update()
+        internal void Step(IEnumerable<Collider> colliders)
         {
             gameObject.position += velocity * Game.FixedDeltaTime;
+
+            foreach (Collider ownCollider in gameObject.physics.colliders)
+            {
+                foreach (Collider collider in colliders)
+                {
+                    if (collider == ownCollider) continue;
+
+                    if (ownCollider.CheckIntersect(collider))
+                    {
+                        new CollisionEvent(gameObject, collider.gameObject).Post();
+                    }
+                }
+            }
+        }
+
+        void OnCollision(Collision collision)
+        {
+            Console.WriteLine(collision);
         }
     }
 }

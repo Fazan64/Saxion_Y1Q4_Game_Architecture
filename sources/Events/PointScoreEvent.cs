@@ -3,7 +3,7 @@ using Engine;
 
 namespace Spaghetti
 {
-    public class PointScoreEvent : EngineEvent<PointScoreEvent>
+    public class PointScoreEvent : BroadcastEvent<PointScoreEvent>
     {
         public static PointScoreEvent leftScored => new PointScoreEvent(false);
         public static PointScoreEvent rightScored => new PointScoreEvent(true);

@@ -12,6 +12,8 @@ namespace Engine
 
         public readonly Components components;
 
+        internal readonly GameObjectPhysics physics;
+
         public float x
         {
             get { return position.x; }
@@ -26,14 +28,21 @@ namespace Engine
         public GameObject(string name)
         {
             components = new Components(this);
+            physics = new GameObjectPhysics(this);
 
             this.name = name;
 
             Game.main.Add(this);
         }
 
+        public override string ToString()
+        {
+            return $"GameObject {name}";
+        }
+
         // Shortcuts
         public T Get<T>()       where T : class     => components.Get<T>();
+        public T[] GetAll<T>()  where T : class     => components.GetAll<T>();
         public T Add<T>()       where T : Component => components.Add<T>();
         public bool Has<T>()    where T : class     => components.Has<T>();
         public T GetOrAdd<T>()  where T : Component => components.GetOrAdd<T>();

@@ -3,7 +3,7 @@ using Engine;
 
 namespace Spaghetti
 {
-    public class BallEnteredBoostZoneEvent : EngineEvent<BallEnteredBoostZoneEvent>
+    public class BallEnteredBoostZoneEvent : BroadcastEvent<BallEnteredBoostZoneEvent>
     {
         public readonly GameObject ball;
 
