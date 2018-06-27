@@ -1,15 +1,13 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Physics/Colliders/AABB.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Components/Rigidbody.cs">
     <Files>
-      <File FileName="sources/Game.cs" Line="101" Column="19" />
-      <File FileName="Engine/Physics/CollisionsHelper.cs" Line="16" Column="10" />
-      <File FileName="Engine/Physics/PhysicsManager.cs" Line="73" Column="49" />
-      <File FileName="Engine/Physics/GameObjectPhysics.cs" Line="87" Column="40" />
-      <File FileName="Engine/Components/Rigidbody.cs" Line="29" Column="10" />
-      <File FileName="sources/MainLevel.cs" Line="51" Column="41" />
-      <File FileName="Engine/Physics/Colliders/AABB.cs" Line="16" Column="34" />
-      <File FileName="Engine/Physics/Collider.cs" Line="6" Column="6" />
-      <File FileName="Engine/Components.cs" Line="32" Column="1" />
+      <File FileName="Engine/Components/Rigidbody.cs" Line="46" Column="18" />
+      <File FileName="Engine/Physics/Collider.cs" Line="10" Column="39" />
+      <File FileName="Engine/Physics/Colliders/AABB.cs" Line="16" Column="63" />
+      <File FileName="Engine/Physics/CollisionsHelper.cs" Line="22" Column="13" />
+      <File FileName="Engine/Physics/CollisionDetectionHelper.cs" Line="10" Column="11" />
+      <File FileName="Engine/Physics/CollisionResolutionHelper.cs" Line="16" Column="13" />
+      <File FileName="sources/Game.cs" Line="111" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

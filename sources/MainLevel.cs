@@ -7,8 +7,8 @@ namespace Spaghetti
     public class MainLevel : GameObject
     {
         private GameObject ball;
-        private AiPaddle leftPaddle;
-        private AiPaddle rightPaddle; // TEMP. Also AI for now. TODO add a player-controlled paddle
+        private GameObject leftPaddle;
+        private GameObject rightPaddle; // TEMP. Also AI for now. TODO add a player-controlled paddle
 
         public MainLevel() : base("MainLevel") {}
 
@@ -20,13 +20,8 @@ namespace Spaghetti
             ball.Add<Rigidbody>();
             ball.Add<AABB>().rect = new Rect(-4f, -4f, 8f, 8f);
 
-            leftPaddle = new AiPaddle("Left", 20, ball);
-            leftPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
-            leftPaddle.Add<AABB>().rect = new Rect(-4f, -32f, 8f, 64f);
-
-            rightPaddle = new AiPaddle("Right", 639 - 20, ball);
-            rightPaddle.Add<ImageRenderer>().SetImage("assets/paddle.png");
-            rightPaddle.Add<AABB>().rect = new Rect(-4f, -32f, 8f, 64f);
+            leftPaddle  = AddPaddle(20f, "PaddleLeft", ball);
+            rightPaddle = AddPaddle(game.size.x - 1f - 20f, "PaddleRight", ball);
 
             AddBooster();
 
@@ -35,7 +30,7 @@ namespace Spaghetti
 
         void Update()
         {
-            CheckPaddleHit();
+            //CheckPaddleHit();
         }
 
         private void CheckPaddleHit()
@@ -65,13 +60,25 @@ namespace Spaghetti
             var go = new GameObject("Booster");
 
             // TODO Add the collision detection engine to remove this dependency.
-            go.Add<BoostZone>().ball = ball;
+            go.Add<Booster>().ball = ball;
 
             var imageRenderer = go.Add<ImageRenderer>();
             imageRenderer.SetImage("assets/booster.png");
             imageRenderer.pivot = Vector2.half;
 
             go.position = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
+        }
+
+        private static GameObject AddPaddle(float x, string name, GameObject ball)
+        {
+            var go = new GameObject(name);
+            go.position.x = x;
+            go.Add<ImageRenderer>().SetImage("assets/paddle.png");
+            go.Add<AABB>().rect = new Rect(-4f, -32f, 8f, 64f);
+            go.Add<Paddle>();
+            go.Add<PaddleAI>().SetBall(ball);
+
+            return go;
         }
     }
 }

@@ -281,6 +281,14 @@ namespace Engine
             if (value > max) return max;
             return value;
         }
+
+        public static float MoveTowards(float current, float target, float maxDelta)
+        {
+            float delta = target - current;
+            if (Abs(delta) <= maxDelta) return target;
+            if (delta < 0f) return current - maxDelta;
+            return current + maxDelta;
+        }
     }
 }
 

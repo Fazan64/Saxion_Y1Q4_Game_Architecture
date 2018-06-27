@@ -1,11 +1,14 @@
 ﻿using System;
+using Engine;
 
 namespace Engine
 {
     public abstract class Collider : Component
     {
-        public abstract bool CheckIntersect(Collider other);
+        public float bounciness { get; set; } = 1f;
 
-        public abstract bool CheckIntersect(AABB other);
+        internal abstract bool HitTest(Collider other, out Hit hit);
+
+        internal abstract bool HitTest(AABB other, out Hit hit);
     }
 }

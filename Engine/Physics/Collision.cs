@@ -4,11 +4,15 @@ namespace Engine
 {
     public class Collision
     {
-        public readonly GameObject collidee;
+        public readonly GameObject gameObject;
+        public readonly Collider collider;
+        public readonly Rigidbody rigidbody;
 
-        public Collision(GameObject collidee)
+        public Collision(GameObject collidee, Collider collider, Rigidbody rigidbody = null)
         {
-            this.collidee = collidee;
+            this.gameObject = collidee;
+            this.collider   = collider;
+            this.rigidbody  = rigidbody;
         }
     }
 }

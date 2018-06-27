@@ -63,6 +63,11 @@ namespace Engine
             ) * length;
         }
 
+        public static bool IsNaN(Vector2 vector)
+        {
+            return float.IsNaN(vector.x) || float.IsNaN(vector.y);
+        }
+
         public Vector2(float x, float y)
         {
             this.x = x;
@@ -166,7 +171,7 @@ namespace Engine
             return this;
         }
 
-        public Vector2 Reflect(Vector2 surfaceNormal, float coeficientOfReflection = 1f)
+        public Vector2 Reflected(Vector2 surfaceNormal, float coeficientOfReflection = 1f)
         {
             Vector2 unitNormal = surfaceNormal.normalized;
             return Subtract(
@@ -242,9 +247,9 @@ namespace Engine
     {
         public static Vector2 GetClosestCardinalDirection(this Vector2 vec)
         {
-            vec = vec.normalized;
+            vec.Normalize();
             if (vec.y > vec.x)
-                return vec.y > -vec.x ? Vector2.up : Vector2.left;
+                return vec.y > -vec.x ? Vector2.up    : Vector2.left;
             else
                 return vec.y > -vec.x ? Vector2.right : Vector2.down;
         }

@@ -100,14 +100,11 @@ namespace Engine
 
                 //Debug.WriteLine($"fps: {1f / elapsed}");
 
-                Application.DoEvents();// pump form event queue, doing nothing with then
+                Application.DoEvents(); // pump form event queue, doing nothing with them
 
                 while (lag >= FixedDeltaTime)
                 {
-                    physicsManager.Step();
-                    eventsManager.DeliverEvents();
                     UpdateFixedTimestep();
-
                     lag -= FixedDeltaTime;
                 }
 
@@ -126,6 +123,8 @@ namespace Engine
 
         private void UpdateFixedTimestep()
         {
+            physicsManager.Step();
+            eventsManager.DeliverEvents();
             updateManager.Step();
         }
     }

@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Engine
 {
-    public class PhysicsManager
+    internal class PhysicsManager
     {
         private readonly HashSet<EngineObject> registered = new HashSet<EngineObject>();
 
@@ -70,18 +70,18 @@ namespace Engine
 
         private static void On(CollisionEvent collisionEvent)
         {
-            collisionEvent.collideeA.physics.onCollision?.Invoke(MakeCollisionForA(collisionEvent));
-            collisionEvent.collideeB.physics.onCollision?.Invoke(MakeCollisionForB(collisionEvent));
+            collisionEvent.gameObjectA.physics.onCollision?.Invoke(MakeCollisionForA(collisionEvent));
+            collisionEvent.gameObjectB.physics.onCollision?.Invoke(MakeCollisionForB(collisionEvent));
         }
 
-        private static Collision MakeCollisionForA(CollisionEvent collisionEvent)
+        private static Collision MakeCollisionForA(CollisionEvent c)
         {
-            return new Collision(collisionEvent.collideeB);
+            return new Collision(c.gameObjectB, c.colliderB, c.rigidbodyB);
         }
 
-        private static Collision MakeCollisionForB(CollisionEvent collisionEvent)
+        private static Collision MakeCollisionForB(CollisionEvent c)
         {
-            return new Collision(collisionEvent.collideeA);
+            return new Collision(c.gameObjectA, c.colliderA, c.rigidbodyA);
         }
     }
 }

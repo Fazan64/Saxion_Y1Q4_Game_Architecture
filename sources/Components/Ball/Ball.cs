@@ -7,7 +7,7 @@ namespace Spaghetti
 {
     public class Ball : Component, 
         IEventReceiver<PointScoreEvent>,
-        IEventReceiver<BallEnteredBoostZoneEvent>
+        IEventReceiver<BallCollidedWithBooster>
     {
         private const float MaxSpeed = 300f;
         private const float InitialHorizontalSpeed = 200f;
@@ -58,7 +58,7 @@ namespace Spaghetti
             Reset();
         }
 
-        public void On(BallEnteredBoostZoneEvent eventData)
+        public void On(BallCollidedWithBooster eventData)
         {
             if (eventData.ball != gameObject) return;
 
@@ -73,7 +73,6 @@ namespace Spaghetti
                 InitialHorizontalSpeed * Math.Sign(rb.velocity.x),
                 MaxInitialVerticalSpeed * (float)(Game.random.NextDouble() - 0.5) * 2f
             );
-            Console.WriteLine(Math.Sign(rb.velocity.x));
 
             isBoosting = false;
             stunnedCounter = 1f;

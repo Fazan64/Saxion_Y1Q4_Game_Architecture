@@ -1,19 +1,21 @@
 ﻿using System;
+using Engine.Internal;
 
 namespace Engine
 {
+    // An axis-aligned bounding box
     public class AABB : Collider
     {
         public Rect rect;
 
-        public override bool CheckIntersect(Collider other)
+        internal override bool HitTest(Collider other, out Hit hit)
         {
-            return other.CheckIntersect(this);
+            return other.HitTest(this, out hit);
         }
 
-        public override bool CheckIntersect(AABB other)
+        internal override bool HitTest(AABB other, out Hit hit)
         {
-            return CollisionsHelper.CheckIntersect(other, this);
+            return CollisionsHelper.CheckIntersect(other, this, out hit);
         }
     }
 }
