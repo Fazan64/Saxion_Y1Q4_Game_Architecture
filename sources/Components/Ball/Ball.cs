@@ -53,6 +53,14 @@ namespace Spaghetti
             boostEffectRenderer.isOn = isBoosting;
         }
 
+        void OnCollision(Collision collision)
+        {
+            if (collision.gameObject.Has<Paddle>())
+            {
+                isBoosting = false;
+            }
+        }
+
         public void On(PointScoreEvent pointScore)
         {
             Reset();
@@ -76,13 +84,6 @@ namespace Spaghetti
 
             isBoosting = false;
             stunnedCounter = 1f;
-        }
-
-        public void Resolve(float x, float y, float mx, float my)
-        {
-            gameObject.position = new Vector2(x, y);
-            rb.velocity         = new Vector2(mx, my);
-            isBoosting          = false;
         }
 
         // TODO ? Use regular collision handling for this.

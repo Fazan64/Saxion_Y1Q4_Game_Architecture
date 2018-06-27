@@ -15,7 +15,7 @@ namespace Engine
 
         internal override bool HitTest(AABB other, out Hit hit)
         {
-            return CollisionsHelper.CheckIntersect(other, this, out hit);
+            return CollisionDetectionHelper.CheckIntersect(other, this, out hit);
         }
     }
 }

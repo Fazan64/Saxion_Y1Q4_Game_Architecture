@@ -6,7 +6,7 @@ namespace Spaghetti
 {
     public class Paddle : Component
     {
-        public float maxSpeedY { get; set; } = 100f;
+        public float maxSpeedY { get; set; } = 50f;
 
         private bool didRequestMovementSinceLastUpdate;
         private float targetY;
@@ -21,8 +21,8 @@ namespace Spaghetti
                 maxDelta
             );
 
-            float minY = 0f + 4f;
-            float maxY = game.size.y - 1f - 4f - 64f;
+            float minY = 0f + 4f + 32f;
+            float maxY = game.size.y - 1f - 4f - 32f;
             gameObject.position.y = Mathf.Clamp(gameObject.position.y, minY, maxY);
 
             didRequestMovementSinceLastUpdate = false;
@@ -33,10 +33,14 @@ namespace Spaghetti
             Ball ball = collision.gameObject.Get<Ball>();
             if (ball == null) return;
 
-            //float dy = Math.Abs((gameObject.position.y - 32) - (collision.gameObject.position.y + 8)) / 50.0f;
+            float deltaY = Mathf.Abs(gameObject.position.y - collision.gameObject.position.y);
+            float normalizedDeltaY = deltaY / (64f * 0.5f);
+            Console.WriteLine("Hit " + normalizedDeltaY); // just for testing
 
-            //Assert.IsNotNull(collision.rigidbody);
-            //collision.rigidbody.velocity.y *=
+            float yMultiplier = 1f + normalizedDeltaY * 2f;
+
+            Assert.IsNotNull(collision.rigidbody);
+            collision.rigidbody.velocity.y *= yMultiplier;
         }
 
         public void SetMoveTarget(float targetY)

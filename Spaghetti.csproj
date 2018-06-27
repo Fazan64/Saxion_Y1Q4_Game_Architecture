@@ -75,11 +75,10 @@
     <Compile Include="Engine\Physics\Collider.cs" />
     <Compile Include="Engine\Physics\CollisionEvent.cs" />
     <Compile Include="Engine\Physics\Colliders\AABB.cs" />
-    <Compile Include="Engine\Physics\CollisionsHelper.cs" />
+    <Compile Include="Engine\Physics\CollisionDetectionHelper.cs" />
     <Compile Include="sources\Components\Paddles\Paddle.cs" />
     <Compile Include="sources\Components\Paddles\PaddleAI.cs" />
     <Compile Include="Engine\Physics\Hit.cs" />
-    <Compile Include="Engine\Physics\CollisionDetectionHelper.cs" />
     <Compile Include="Engine\Physics\CollisionResolutionHelper.cs" />
   </ItemGroup>
   <ItemGroup>

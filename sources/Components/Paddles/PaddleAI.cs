@@ -15,14 +15,13 @@ namespace Spaghetti
             Assert.IsNotNull(paddle);
 
             Assert.IsNotNull(ball);
-            //gameObject.position.y = ball.y;
+            gameObject.position.y = ball.y;
         }
 
         void Update()
         {
             Assert.IsNotNull(ball);
             paddle.SetMoveTarget(ball.y);
-            //gameObject.position.y = ball.y;
         }
 
         public void SetBall(GameObject ball)
