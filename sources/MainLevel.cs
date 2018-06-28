@@ -14,11 +14,9 @@ namespace Spaghetti
 
         void Start()
         {
-            ball = new GameObject("Ball");
-            ball.Add<Ball>();
-            ball.Add<ImageRenderer>().SetImage("assets/ball.png");
-            ball.Add<Rigidbody>();
-            ball.Add<AABB>().rect = new Rect(-4f, -4f, 8f, 8f);
+            AddTopAndBottomWalls();
+
+            ball = AddBall();
 
             leftPaddle  = AddPaddle(20f, "PaddleLeft", ball);
             rightPaddle = AddPaddle(game.size.x - 1f - 20f, "PaddleRight", ball);
@@ -26,6 +24,36 @@ namespace Spaghetti
             AddBooster();
 
             new GameObject("ScoreTracker").Add<ScoreTracker>();
+        }
+
+        private void AddTopAndBottomWalls()
+        {
+            const float height = 100f;
+            Rect rect;
+
+            rect = new Rect(0f, -height    , game.size.x, height);
+            AddAABBCollider("WallTop", rect);
+
+            rect = new Rect(0f, game.size.y, game.size.x, height);
+            AddAABBCollider("WallBottom", rect);
+        }
+
+        private static GameObject AddAABBCollider(string name, Rect rect)
+        {
+            var go = new GameObject(name);
+            go.Add<AABB>().rect = rect;
+            return go;
+        }
+
+        private static GameObject AddBall()
+        {
+            var go = new GameObject("Ball");
+            go.Add<Ball>();
+            go.Add<ImageRenderer>().SetImage("assets/ball.png");
+            go.Add<Rigidbody>();
+            go.Add<AABB>().rect = new Rect(-4f, -4f, 8f, 8f);
+
+            return go;
         }
 
         private void AddBooster()
@@ -50,7 +78,7 @@ namespace Spaghetti
             go.Add<ImageRenderer>().SetImage("assets/paddle.png");
             go.Add<AABB>().rect = new Rect(-4f, -32f, 8f, 64f);
             go.Add<Paddle>();
-            go.Add<PaddleAI>().SetBall(ball);
+            go.Add<PaddleAI>().SetBall(ball); // TODO Make PaddleAI|s find the ball themselves.
 
             return go;
         }

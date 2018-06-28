@@ -7,3 +7,4 @@
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spaghetti.csproj.CoreCompileInputs.cache
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spagetti.exe
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spagetti.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spaghetti.csprojResolveAssemblyReference.cache

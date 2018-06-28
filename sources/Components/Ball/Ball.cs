@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Engine;
+using NUnit.Framework;
 
 namespace Spaghetti
 {
@@ -24,6 +25,7 @@ namespace Spaghetti
             Console.WriteLine(this + ": Start");
 
             rb = Get<Rigidbody>();
+            Assert.IsNotNull(rb);
             rb.velocity.x = 10f;
 
             boostEffectRenderer = GetOrAdd<BallBoostEffectRenderer>();
@@ -46,7 +48,6 @@ namespace Spaghetti
             extraVelocity = extraVelocity.TruncatedBy(MaxSpeed / 2f);
             gameObject.position += extraVelocity * Game.FixedDeltaTime;
 
-            BounceOffHorizontalWalls();
             CheckScore();
 
             // TODO do this in a framerate-based update, not the fixed-timestep one.
@@ -84,24 +85,6 @@ namespace Spaghetti
 
             isBoosting = false;
             stunnedCounter = 1f;
-        }
-
-        // TODO ? Use regular collision handling for this.
-        private void BounceOffHorizontalWalls()
-        {
-            float topBound = 0f;
-            float bottomBound = game.size.y - 1f - 16f;
-
-            if (gameObject.y < topBound)
-            {
-                gameObject.y = topBound;
-                rb.velocity.y *= -1f;
-            }
-            else if (gameObject.y > bottomBound)
-            {
-                gameObject.y = bottomBound;
-                rb.velocity.y *= -1f;
-            }
         }
 
         private void CheckScore()
