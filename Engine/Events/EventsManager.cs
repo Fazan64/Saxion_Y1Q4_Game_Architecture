@@ -34,13 +34,16 @@ namespace Engine
 
         public void Post(IBroadcastEvent engineEvent)
         {
+            Assert.IsNotNull(engineEvent);
             events.Enqueue(engineEvent);
         }
 
         public void DeliverEvents()
         {
-            foreach (IBroadcastEvent engineEvent in events) engineEvent.Deliver();
-            events.Clear();
+            while (events.Count > 0)
+            {
+                events.Dequeue().Deliver();
+            }
         }
 
         #region Dark Arts

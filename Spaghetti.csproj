@@ -80,6 +80,7 @@
     <Compile Include="sources\Components\Paddles\PaddleAI.cs" />
     <Compile Include="Engine\Physics\Hit.cs" />
     <Compile Include="Engine\Physics\CollisionResolutionHelper.cs" />
+    <Compile Include="sources\Components\PointScoreDetector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\ball.png">

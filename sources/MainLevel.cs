@@ -15,6 +15,7 @@ namespace Spaghetti
         void Start()
         {
             AddTopAndBottomWalls();
+            AddSideWalls();
 
             ball = AddBall();
 
@@ -36,6 +37,18 @@ namespace Spaghetti
 
             rect = new Rect(0f, game.size.y, game.size.x, height);
             AddAABBCollider("WallBottom", rect);
+        }
+
+        private void AddSideWalls()
+        {
+            const float width = 100f;
+            Rect rect;
+
+            rect = new Rect(-width     , 0f, width, game.size.y);
+            AddAABBCollider("WallLeft", rect).Add<PointScoreDetector>().isRightPlayer = false;
+
+            rect = new Rect(game.size.x, 0f, width, game.size.y);
+            AddAABBCollider("WallRight", rect).Add<PointScoreDetector>().isRightPlayer = true;
         }
 
         private static GameObject AddAABBCollider(string name, Rect rect)

@@ -48,8 +48,6 @@ namespace Spaghetti
             extraVelocity = extraVelocity.TruncatedBy(MaxSpeed / 2f);
             gameObject.position += extraVelocity * Game.FixedDeltaTime;
 
-            CheckScore();
-
             // TODO do this in a framerate-based update, not the fixed-timestep one.
             boostEffectRenderer.isOn = isBoosting;
         }
@@ -85,18 +83,6 @@ namespace Spaghetti
 
             isBoosting = false;
             stunnedCounter = 1f;
-        }
-
-        private void CheckScore()
-        {
-            if (gameObject.position.x < 0f) // left score
-            {
-                PointScoreEvent.rightScored.Post();
-            }
-            else if (gameObject.position.x > game.size.x - 1f - 16f) // right score
-            {
-                PointScoreEvent.leftScored.Post();
-            }
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-    /// TODO What's returned by collider.CheckCollision();
+    /// What's returned by collider.CheckCollision();
     public class Hit
     {
         public Collider collider;

@@ -1,14 +1,13 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sources/MainLevel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sources/Components/BoostZone/Booster.cs">
     <Files>
-      <File FileName="Engine/Components/Rigidbody.cs" Line="38" Column="21" />
-      <File FileName="Engine/Physics/Collider.cs" Line="15" Column="1" />
-      <File FileName="Engine/Physics/Colliders/AABB.cs" Line="3" Column="1" />
-      <File FileName="sources/Game.cs" Line="47" Column="52" />
-      <File FileName="Engine/Components/ImageRenderer.cs" Line="7" Column="18" />
-      <File FileName="sources/Components/Paddles/Paddle.cs" Line="31" Column="46" />
-      <File FileName="sources/MainLevel.cs" Line="33" Column="46" />
-      <File FileName="sources/Components/Ball/Ball.cs" Line="51" Column="15" />
+      <File FileName="sources/Game.cs" Line="107" Column="43" />
+      <File FileName="sources/MainLevel.cs" Line="64" Column="22" />
+      <File FileName="sources/Components/PointScoreDetector.cs" Line="16" Column="1" />
+      <File FileName="sources/Components/Ball/Ball.cs" Line="70" Column="30" />
+      <File FileName="Engine/Events/EventsManager.cs" Line="47" Column="10" />
+      <File FileName="Engine/GameObject.cs" Line="46" Column="18" />
+      <File FileName="sources/Components/BoostZone/Booster.cs" Line="16" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
