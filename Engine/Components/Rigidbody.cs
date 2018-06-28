@@ -42,10 +42,19 @@ namespace Engine
 
             GameObject otherGameObject = otherCollider.gameObject;
             Rigidbody  otherRigidbody  = otherGameObject.physics.rigidbody;
+
+            if (ownCollider.isTrigger || otherCollider.isTrigger)
+            {
+                new TriggerEvent(ownCollider, otherCollider).Post();
+                return;
+            }
+
             new CollisionEvent(
                 gameObject     , ownCollider  , this,
                 otherGameObject, otherCollider, otherRigidbody
             ).Post();
+
+            // Resolve
 
             gameObject.position += hit.delta;
 

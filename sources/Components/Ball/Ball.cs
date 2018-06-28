@@ -8,7 +8,7 @@ namespace Spaghetti
 {
     public class Ball : Component, 
         IEventReceiver<PointScoreEvent>,
-        IEventReceiver<BallCollidedWithBooster>
+        IEventReceiver<BallCollidedWithBoosterEvent>
     {
         private const float MaxSpeed = 300f;
         private const float InitialHorizontalSpeed = 200f;
@@ -65,7 +65,7 @@ namespace Spaghetti
             Reset();
         }
 
-        public void On(BallCollidedWithBooster eventData)
+        public void On(BallCollidedWithBoosterEvent eventData)
         {
             if (eventData.ball != gameObject) return;
 

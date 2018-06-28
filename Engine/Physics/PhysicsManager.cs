@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
 
-namespace Engine
+namespace Engine.Internal
 {
     internal class PhysicsManager
     {
@@ -18,6 +18,7 @@ namespace Engine
             colliders = new HashSet<Collider>();
 
             CollisionEvent.OnDeliver += On;
+            TriggerEvent.OnDeliver   += On;
         }
 
         public void Add(EngineObject engineObject)
@@ -72,6 +73,12 @@ namespace Engine
         {
             collisionEvent.gameObjectA.physics.onCollision?.Invoke(MakeCollisionForA(collisionEvent));
             collisionEvent.gameObjectB.physics.onCollision?.Invoke(MakeCollisionForB(collisionEvent));
+        }
+
+        private static void On(TriggerEvent triggerEvent)
+        {
+            triggerEvent.colliderA.gameObject.physics.onTrigger?.Invoke(triggerEvent.colliderB);
+            triggerEvent.colliderB.gameObject.physics.onTrigger?.Invoke(triggerEvent.colliderA);
         }
 
         private static Collision MakeCollisionForA(CollisionEvent c)

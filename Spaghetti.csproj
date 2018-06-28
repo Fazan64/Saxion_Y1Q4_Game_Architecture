@@ -63,7 +63,7 @@
     <Compile Include="Engine\Events\IEventReceiver.cs" />
     <Compile Include="Engine\Events\EventsManager.cs" />
     <Compile Include="sources\Events\PointScoreEvent.cs" />
-    <Compile Include="sources\Events\BallCollidedWithBooster.cs" />
+    <Compile Include="sources\Events\BallCollidedWithBoosterEvent.cs" />
     <Compile Include="sources\Components\Ball\Ball.cs" />
     <Compile Include="sources\Components\Ball\BallBoostEffectRenderer.cs" />
     <Compile Include="sources\Components\BoostZone\Booster.cs" />
@@ -73,7 +73,6 @@
     <Compile Include="Engine\Physics\Collision.cs" />
     <Compile Include="Engine\Physics\GameObjectPhysics.cs" />
     <Compile Include="Engine\Physics\Collider.cs" />
-    <Compile Include="Engine\Physics\CollisionEvent.cs" />
     <Compile Include="Engine\Physics\Colliders\AABB.cs" />
     <Compile Include="Engine\Physics\CollisionDetectionHelper.cs" />
     <Compile Include="sources\Components\Paddles\Paddle.cs" />
@@ -81,6 +80,9 @@
     <Compile Include="Engine\Physics\Hit.cs" />
     <Compile Include="Engine\Physics\CollisionResolutionHelper.cs" />
     <Compile Include="sources\Components\PointScoreDetector.cs" />
+    <Compile Include="Engine\Physics\BroadcastEvents\CollisionEvent.cs" />
+    <Compile Include="Engine\Physics\BroadcastEvents\TriggerEvent.cs" />
+    <Compile Include="Engine\Utils\EventFunctionNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\ball.png">
@@ -109,6 +111,7 @@
     <Folder Include="Engine\Physics\" />
     <Folder Include="Engine\Physics\Colliders\" />
     <Folder Include="sources\Components\Paddles\" />
+    <Folder Include="Engine\Physics\BroadcastEvents\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

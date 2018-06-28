@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
 
-#pragma warning disable RECS0020 // Delegate subtraction has unpredictable result.
-// Problems only happen when subtracting a sequence of delegates in a multicast delegate.
+#pragma warning disable RECS0020 // ("Delegate subtraction has unpredictable result")
+// Problems only arise when subtracting a sequence of delegates in a multicast delegate.
 // Only single delegates are being subtracted here.
 
-namespace Engine
+namespace Engine.Internal
 {
-    /// Efficiently keeps track of physics-related components on a gameobject. 
-    public class GameObjectPhysics
+    /// Efficiently keeps track of physics-related components and callbacks 
+    /// of a gameobject.
+    internal class GameObjectPhysics
     {
         public event Action<GameObjectPhysics> OnUpdate;
 
@@ -19,15 +20,22 @@ namespace Engine
         public Rigidbody rigidbody { get; private set; }
         public IEnumerable<Collider> colliders => _colliders.AsReadOnly();
         public Action<Collision> onCollision { get; private set; }
+        public Action<Collider>  onTrigger   { get; private set; }
 
         public GameObjectPhysics(GameObject gameObject)
         {
-            onCollision = gameObject.GetDelegate<Action<Collision>>("OnCollision");
-
+            AddOwnCallbacksOf(gameObject);
             AddExistingComponentsOf(gameObject);
 
             gameObject.components.OnComponentAdded   += OnComponentAdded;
             gameObject.components.OnComponentRemoved += OnComponentRemoved;
+        }
+
+        public void AddOwnCallbacksOf(GameObject gameObject)
+        {
+            Callbacks callbacks = ((IBehaviour)gameObject).GetCallbacks();
+            onCollision = callbacks.onCollision;
+            onTrigger   = callbacks.onTrigger;
         }
 
         private void AddExistingComponentsOf(GameObject gameObject)
@@ -37,7 +45,7 @@ namespace Engine
 
             foreach (var behaviour in gameObject.GetAll<IBehaviour>())
             {
-                onCollision += behaviour.GetCallbacks().onCollision;
+                AddCallbacksFrom(behaviour);
             }
         }
 
@@ -47,8 +55,7 @@ namespace Engine
 
             if (component is IBehaviour behaviour)
             {
-                onCollision += behaviour.GetCallbacks().onCollision;
-
+                AddCallbacksFrom(behaviour);
                 didUpdate = true;
             }
 
@@ -79,8 +86,7 @@ namespace Engine
 
             if (component is IBehaviour behaviour)
             {
-                onCollision -= behaviour.GetCallbacks().onCollision;
-
+                RemoveCallbacksFrom(behaviour);
                 didUpdate = true;
             }
 
@@ -103,6 +109,20 @@ namespace Engine
             {
                 OnUpdate?.Invoke(this);
             }
+        }
+
+        private void AddCallbacksFrom(IBehaviour behaviour)
+        {
+            Callbacks callbacks = behaviour.GetCallbacks();
+            onCollision += callbacks.onCollision;
+            onTrigger   += callbacks.onTrigger;
+        }
+
+        private void RemoveCallbacksFrom(IBehaviour behaviour)
+        {
+            Callbacks callbacks = behaviour.GetCallbacks();
+            onCollision -= callbacks.onCollision;
+            onTrigger   -= callbacks.onTrigger;
         }
     }
 }

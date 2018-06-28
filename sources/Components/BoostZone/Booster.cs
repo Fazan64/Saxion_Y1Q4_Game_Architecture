@@ -4,26 +4,14 @@ using NUnit.Framework;
 
 namespace Spaghetti
 {
+    /// Broadcasts a BallCollidedWithBooster event upon collision with a Ball.
     public class Booster : Component
     {
-        public GameObject ball { get; set; }
-
-        void Start()
+        void OnTrigger(Collider collider)
         {
-            Assert.IsNotNull(ball);
-        }
+            if (!collider.gameObject.Has<Ball>()) return;
 
-        void Update()
-        {
-            if (
-                ball.x      < gameObject.position.x + 16 && 
-                ball.x + 16 > gameObject.position.x - 16 && 
-                ball.y      < gameObject.position.y + 16 && 
-                ball.y + 16 > gameObject.position.y - 16
-            )
-            {
-                new BallCollidedWithBooster(ball).Post();
-            }
+            new BallCollidedWithBoosterEvent(collider.gameObject).Post();
         }
     }
 }

@@ -73,13 +73,15 @@ namespace Spaghetti
         {
             // Boost zone
             var go = new GameObject("Booster");
-
-            // TODO Add the collision detection engine to remove this dependency.
-            go.Add<Booster>().ball = ball;
+            go.Add<Booster>();
 
             var imageRenderer = go.Add<ImageRenderer>();
             imageRenderer.SetImage("assets/booster.png");
             imageRenderer.pivot = Vector2.half;
+
+            var aabb = go.Add<AABB>();
+            aabb.rect = Rect.FromCenterAndHalfDiagonal(Vector2.zero, Vector2.one * 16f);
+            aabb.isTrigger = true;
 
             go.position = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
         }

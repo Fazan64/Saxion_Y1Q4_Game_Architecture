@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 using Spaghetti;
 using Engine;
+using Engine.Internal;
 
 static class Program
 {

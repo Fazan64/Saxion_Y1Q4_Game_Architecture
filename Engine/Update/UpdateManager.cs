@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace Engine
+namespace Engine.Internal
 {
     internal class UpdateManager
     {
