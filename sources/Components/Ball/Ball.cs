@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Engine;
 using NUnit.Framework;
 
-namespace Spaghetti
+namespace Penne
 {
     public class Ball : Component, 
         IEventReceiver<PointScoreEvent>,

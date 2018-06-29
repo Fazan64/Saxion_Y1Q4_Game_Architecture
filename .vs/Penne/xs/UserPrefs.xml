@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sources/Components/Paddles/PaddleAI.cs">
+    <Files>
+      <File FileName="Tests/Test.cs" Line="8" Column="6" />
+      <File FileName="Tests/TestVector2.cs" Line="194" Column="26" />
+      <File FileName="Tests/TestCollisionDetectionAABB.cs" Line="83" Column="9" />
+      <File FileName="Engine/Physics/CollisionDetectionHelper.cs" Line="38" Column="14" />
+      <File FileName="Engine/Game.cs" Line="83" Column="39" />
+      <File FileName="Engine/Utils/Rect.cs" Line="52" Column="22" />
+      <File FileName="Engine/Physics/Hit.cs" Line="14" Column="16" />
+      <File FileName="Engine/Physics/PhysicsManager.cs" Line="84" Column="63" />
+      <File FileName="Sources/Components/Paddles/PaddleAI.cs" Line="21" Column="10" />
+      <File FileName="Sources/Components/Paddles/Paddle.cs" Line="9" Column="42" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Penne" expanded="True">
+            <Node name="Tests" expanded="True">
+              <Node name="TestCollisionDetectionAABB" expanded="True">
+                <Node name="CheckIntersect" expanded="True">
+                  <Node name="CheckIntersect([Rectangle: -0.9, 0.9, 1, 1],[Rectangle: 0, 0, 1, 1],[Hit: normal: [Vector2 -1, 1], delta: [Vector2 -0.1, 0.1], position: [Vector2 -1, 1]])" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Tests PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Penne PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

@@ -2,22 +2,16 @@
 
 namespace Engine
 {
-    /// What's returned by collider.CheckCollision();
-    public class Hit
+    /// What's returned by Collider.CheckIntersect();
+    public struct Hit
     {
-        public Collider collider;
         public Vector2 normal;
         public Vector2 delta;
         public Vector2 position;
-        public float timeOfImpact;
 
-        public Hit() {}
-
-        public Hit(Collider collider, Vector2 normal, float timeOfImpact)
+        public override string ToString()
         {
-            this.collider = collider;
-            this.normal = normal;
-            this.timeOfImpact = timeOfImpact;
+            return $"[Hit: normal: {normal}, delta: {delta}, position: {position}]";
         }
     }
 }

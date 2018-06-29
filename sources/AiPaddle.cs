@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Engine;
 
-namespace Spaghetti
+namespace Penne
 {
     class AiPaddle : GameObject
     {

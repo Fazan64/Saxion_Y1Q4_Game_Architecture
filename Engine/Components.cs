@@ -33,9 +33,9 @@ namespace Engine
 
             T component = Activator.CreateInstance<T>();
             component.gameObject = gameObject;
+            Game.main.Add(component);
 
             list.Add(component);
-
             OnComponentAdded?.Invoke(gameObject, component);
 
             return component;

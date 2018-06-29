@@ -23,7 +23,7 @@ namespace Engine
             set { position = new Vector2(x, value); }
         }
 
-        public GameObject(string name)
+        public GameObject(string name = "GameObject")
         {
             components = new Components(this);
             physics = new GameObjectPhysics(this);

@@ -1,7 +1,7 @@
 ﻿using System;
 using Engine;
 
-namespace Spaghetti
+namespace Penne
 {
     public class PointScoreEvent : BroadcastEvent<PointScoreEvent>
     {

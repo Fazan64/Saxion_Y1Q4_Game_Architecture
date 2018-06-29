@@ -2,51 +2,37 @@
 using Engine;
 using NUnit.Framework;
 
-namespace Spaghetti
+namespace Penne
 {
     public class Paddle : Component
     {
-        public float maxSpeedY { get; set; } = 50f;
-
-        private bool didRequestMovementSinceLastUpdate;
-        private float targetY;
+        const float VerticalPadding = 4f;
+        const float SizeY = 64f;
 
         void Update()
         {
-            if (!didRequestMovementSinceLastUpdate) return;
-
-            float maxDelta = maxSpeedY * Game.FixedDeltaTime;
-            gameObject.position.y = Mathf.MoveTowards(
-                gameObject.position.y, targetY, 
-                maxDelta
-            );
-
-            float minY = 0f + 4f + 32f;
-            float maxY = game.size.y - 1f - 4f - 32f;
+            float minY = 0f               + VerticalPadding + SizeY * 0.5f;
+            float maxY = game.size.y - 1f - VerticalPadding - SizeY * 0.5f;
             gameObject.position.y = Mathf.Clamp(gameObject.position.y, minY, maxY);
-
-            didRequestMovementSinceLastUpdate = false;
         }
 
         void OnCollision(Collision collision)
         {
-            Ball ball = collision.gameObject.Get<Ball>();
-            if (ball == null) return;
+            if (!collision.gameObject.Has<Ball>()) return;
 
-            float deltaY = Mathf.Abs(gameObject.position.y - collision.gameObject.position.y);
-            float normalizedDeltaY = deltaY / (64f * 0.5f);
-            Console.WriteLine("Hit " + normalizedDeltaY); // just for testing
+            //float deltaY = Mathf.Abs(gameObject.position.y - collision.gameObject.position.y);
+            //float normalizedDeltaY = deltaY / (64f * 0.5f);
+            //Console.WriteLine("Hit " + normalizedDeltaY); // just for testing
 
-            float yMultiplier = 1f + normalizedDeltaY * 2f;
+            //float yMultiplier = 1.5f + normalizedDeltaY * 2f;
+
+            float deltaY = Mathf.Abs(gameObject.position.y - SizeY - collision.gameObject.position.y);
+            Console.WriteLine("Hit " + deltaY); // just for testing
+
+            float yVelocityMultiplier = Mathf.Abs(deltaY) / 50f;
 
             Assert.IsNotNull(collision.rigidbody);
-            collision.rigidbody.velocity.y *= yMultiplier;
-        }
-
-        public void SetMoveTarget(float targetY)
-        {
-            this.targetY = targetY;
-            didRequestMovementSinceLastUpdate = true;
+            collision.rigidbody.velocity.y *= yVelocityMultiplier;
         }
     }
 }

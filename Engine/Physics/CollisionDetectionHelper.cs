@@ -5,50 +5,36 @@ namespace Engine.Internal
 {
     internal static class CollisionDetectionHelper
     {
-        public static bool CheckIntersect(AABB a, AABB b)
-        {
-            Rect rectA = a.rect;
-            rectA.center += a.gameObject.position;
-
-            Rect rectB = b.rect;
-            rectB.center += b.gameObject.position;
-
-            return rectA.Overlaps(rectB);
-        }
-
-        public static bool CheckIntersect(AABB a, AABB b, out Hit hit)
+        /// Checks Rect a against Rect b. 
+        /// `a` is assumed to be moving against `b`, so
+        /// hit.delta will be the displacement by which `a` needs to be moved
+        /// to stop penetration.
+        /// hit.normal will be from `b` to `a`.
+        public static bool CheckIntersect(Rect a, Rect b, out Hit hit)
         {
             hit = new Hit();
 
-            Rect rectA = a.rect;
-            rectA.center += a.gameObject.position;
-
-            Rect rectB = b.rect;
-            rectB.center += b.gameObject.position;
-
-            Vector2 delta = rectA.center - rectB.center;
-            Vector2 penetration = rectA.halfDiagonal + rectB.halfDiagonal - Abs(delta);
+            Vector2 delta = a.center - b.center;
+            Vector2 penetration = a.halfDiagonal + b.halfDiagonal - Abs(delta);
 
             if (penetration.x <= 0f) return false;
             if (penetration.y <= 0f) return false;
-
-            hit.collider = b;
 
             if (penetration.x < penetration.y)
             {
                 float sx = Sign(delta.x);
                 hit.delta.x = penetration.x * sx;
                 hit.normal.x = sx;
-                hit.position.x = rectB.x + sx * rectB.halfDiagonal.x;
-                hit.position.y = rectA.y;
+                hit.position.x = b.center.x + sx * b.halfDiagonal.x;
+                hit.position.y = a.center.y;
             }
             else
             {
                 float sy = Sign(delta.y);
                 hit.delta.y = penetration.y * sy;
                 hit.normal.y = sy;
-                hit.position.x = rectA.x;
-                hit.position.y = rectB.y + sy * rectB.halfDiagonal.y;
+                hit.position.x = a.center.x;
+                hit.position.y = b.center.y + sy * b.halfDiagonal.y;
             }
 
             return true;

@@ -2,7 +2,7 @@
 using Engine;
 using NUnit.Framework;
 
-namespace Spaghetti
+namespace Penne
 {
     /// Broadcasts a BallCollidedWithBooster event upon collision with a Ball.
     public class Booster : Component

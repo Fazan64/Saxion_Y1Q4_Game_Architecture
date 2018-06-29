@@ -83,7 +83,9 @@ namespace Engine.Internal
 
         private static Collision MakeCollisionForA(CollisionEvent c)
         {
-            return new Collision(c.gameObjectB, c.colliderB, c.rigidbodyB);
+            return new Collision(
+                c.gameObjectB, c.colliderB, c.rigidbodyB
+            );
         }
 
         private static Collision MakeCollisionForB(CollisionEvent c)

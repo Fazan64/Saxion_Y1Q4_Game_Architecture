@@ -6,10 +6,7 @@ namespace Engine
     {
         public GameObject gameObject;
 
-        internal Component()
-        {
-            Game.main.Add(this);
-        }
+        internal Component() {}
 
         // Shortcuts for inheritors.
         protected T Get<T>()       where T : class     => gameObject.components.Get<T>();

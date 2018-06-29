@@ -2,7 +2,7 @@
 using Engine;
 using System.Drawing;
 
-namespace Spaghetti
+namespace Penne
 {
     public class MainLevel : GameObject
     {
@@ -54,7 +54,7 @@ namespace Spaghetti
         private static GameObject AddAABBCollider(string name, Rect rect)
         {
             var go = new GameObject(name);
-            go.Add<AABB>().rect = rect;
+            go.Add<AABBCollider>().rect = rect;
             return go;
         }
 
@@ -64,7 +64,7 @@ namespace Spaghetti
             go.Add<Ball>();
             go.Add<ImageRenderer>().SetImage("assets/ball.png");
             go.Add<Rigidbody>();
-            go.Add<AABB>().rect = new Rect(-4f, -4f, 8f, 8f);
+            go.Add<AABBCollider>().rect = new Rect(-4f, -4f, 8f, 8f);
 
             return go;
         }
@@ -79,7 +79,7 @@ namespace Spaghetti
             imageRenderer.SetImage("assets/booster.png");
             imageRenderer.pivot = Vector2.half;
 
-            var aabb = go.Add<AABB>();
+            var aabb = go.Add<AABBCollider>();
             aabb.rect = Rect.FromCenterAndHalfDiagonal(Vector2.zero, Vector2.one * 16f);
             aabb.isTrigger = true;
 
@@ -91,7 +91,7 @@ namespace Spaghetti
             var go = new GameObject(name);
             go.position.x = x;
             go.Add<ImageRenderer>().SetImage("assets/paddle.png");
-            go.Add<AABB>().rect = new Rect(-4f, -32f, 8f, 64f);
+            go.Add<AABBCollider>().rect = new Rect(-4f, -32f, 8f, 64f);
             go.Add<Paddle>();
             go.Add<PaddleAI>().SetBall(ball); // TODO Make PaddleAI|s find the ball themselves.
 

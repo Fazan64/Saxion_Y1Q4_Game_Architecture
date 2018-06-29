@@ -1,0 +1,10 @@
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Assets/ball.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Assets/booster.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Assets/digits.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Assets/paddle.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Spagetti.exe
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/Spagetti.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Penne.csproj.CoreCompileInputs.cache
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spagetti.exe
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spagetti.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Penne.csprojResolveAssemblyReference.cache

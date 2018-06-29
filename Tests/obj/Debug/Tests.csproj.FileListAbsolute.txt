@@ -1,0 +1,15 @@
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/obj/Debug/Tests.csprojResolveAssemblyReference.cache
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/obj/Debug/Tests.csproj.CoreCompileInputs.cache
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Assets/ball.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Assets/booster.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Assets/digits.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Assets/paddle.png
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Tests.dll
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Tests.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/nunit.framework.dll
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Spagetti.exe
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/Spagetti.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/nunit.framework.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/bin/Debug/nunit.framework.xml
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/obj/Debug/Tests.dll
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/Tests/obj/Debug/Tests.pdb

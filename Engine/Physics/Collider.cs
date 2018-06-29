@@ -9,6 +9,6 @@ namespace Engine
         public bool isTrigger { get; set; }
 
         internal abstract bool HitTest(Collider other, out Hit hit);
-        internal abstract bool HitTest(AABB other    , out Hit hit);
+        internal abstract bool HitTest(AABBCollider other    , out Hit hit);
     }
 }
