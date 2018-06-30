@@ -5,9 +5,8 @@ using NUnit.Framework;
 
 namespace Engine.Internal
 {
-    /// Steps the physics simulation,
+    /// Steps the physics simulation.
     /// Calls OnCollision and OnTrigger methods on all registered EngineObject|s
-    /// 
     internal class PhysicsManager
     {
         private readonly HashSet<EngineObject> registered = new HashSet<EngineObject>();
@@ -62,6 +61,7 @@ namespace Engine.Internal
             registered.Remove(engineObject);
         }
 
+        /// Steps the physics simulation one fixed timestep forward
         public void Step()
         {
             foreach (GameObjectPhysics physics in gameObjectsPhysics)

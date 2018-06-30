@@ -3,6 +3,8 @@ using static Engine.Mathf;
 
 namespace Engine.Internal
 {
+    /// A helper for resolving collisions between physical bodies
+    /// in a way which obeys conservation of momentum.
     public static class CollisionResolutionHelper
     {
         public static void Resolve(

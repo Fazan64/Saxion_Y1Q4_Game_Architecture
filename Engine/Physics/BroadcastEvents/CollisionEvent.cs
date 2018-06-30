@@ -2,6 +2,9 @@
 
 namespace Engine
 {
+    /// This event is broadcast whenever there is a collision between
+    /// two non-trigger colliders.
+    /// NOTE: At least one of the collidees needs to have a Rigidbody.
     public class CollisionEvent : BroadcastEvent<CollisionEvent>
     {
         public readonly GameObject gameObjectA;

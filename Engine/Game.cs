@@ -7,6 +7,9 @@ using Engine.Internal;
 
 namespace Engine
 {
+    /// A single game instance. 
+    /// To use the engine, create an instance of Game, 
+    /// and call Run after creating gameobjects your game needs.
     public class Game
     {
         public const float FixedDeltaTime = 1f / 100f;
@@ -16,32 +19,33 @@ namespace Engine
         // TODO extract into a service.
         public static readonly Random random = new Random(1);
 
+        public readonly Vector2 size;
+
         private readonly HashSet<EngineObject> addedObjects;
 
+        private readonly RenderingManager renderingManager;
         private readonly UpdateManager    updateManager;
         private readonly PhysicsManager   physicsManager;
-        private readonly RenderingManager renderingManager;
         private readonly EventsManager    eventsManager;
 
         private readonly GameForm form;
 
         private bool isRunning = false;
 
-        public Vector2 size  => new Vector2(form.ClientSize.Width, form.ClientSize.Height);
-
-        public Game()
+        public Game(string title, int resolutionX, int resolutionY)
         {
             Assert.IsNull(main);
             main = this;
 
             addedObjects = new HashSet<EngineObject>();
 
+            renderingManager = new RenderingManager();
             updateManager    = new UpdateManager();
             physicsManager   = new PhysicsManager();
-            renderingManager = new RenderingManager();
             eventsManager    = new EventsManager();
 
-            form = new GameForm("Penne");
+            size = new Vector2(resolutionX, resolutionY);
+            form = new GameForm(title, resolutionX, resolutionY);
             form.Paint += OnFormPaint;
         }
 

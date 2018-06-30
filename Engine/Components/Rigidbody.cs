@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Engine
 {
+    /// This component is responsible for physics-based movement
+    /// and collision detection and resolution.
+    /// Whenever a collision is detected, broadcasts a CollisionEvent or a TriggerEvent.
     public class Rigidbody : Component
     {
         public Vector2 velocity;

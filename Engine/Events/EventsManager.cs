@@ -4,11 +4,22 @@ using System.Reflection;
 using System.Linq;
 using NUnit.Framework;
 
-namespace Engine
+namespace Engine.Internal
 {
+    /// <summary>
+    /// Keeps track of broadcastable event receivers.
+    /// Makes it possible to queue up posted broadcastable events and 
+    /// deliver them all together to the appropriate receivers later.
+    /// Add/Remove event receivers
+    /// Post/Deliver events.
+    /// </summary>
     internal class EventsManager
     {
         private readonly Queue<IBroadcastEvent> events = new Queue<IBroadcastEvent>();
+
+        /// Each one of these is responsible for registering a receiver of events
+        /// of a single concrete type. There's as many of these as there are concrete
+        /// broadcastable event types.
         private readonly IEventReceiverRegisterer[] registerers;
 
         public EventsManager()
@@ -38,6 +49,8 @@ namespace Engine
             events.Enqueue(engineEvent);
         }
 
+        /// Delivers all events posted since the last call to this method.
+        /// Any events posted while delivering events will also be delivered.
         public void DeliverEvents()
         {
             while (events.Count > 0)
