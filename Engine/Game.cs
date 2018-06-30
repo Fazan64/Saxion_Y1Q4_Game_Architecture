@@ -93,22 +93,22 @@ namespace Engine
 
             while (isRunning)
             {
+                Application.DoEvents(); // pump form event queue, doing nothing with them
+                form.Refresh(); // causes OnPaint event
+
                 float current = stopwatch.ElapsedMilliseconds / 1000f;
                 float elapsed = current - previous;
                 lag += elapsed;
                 previous = current;
 
-                //Debug.WriteLine($"fps: {1f / elapsed}");
-
-                Application.DoEvents(); // pump form event queue, doing nothing with them
+                Debug.WriteLine($"fps: {1f / elapsed}");
 
                 while (lag >= FixedDeltaTime)
                 {
                     UpdateFixedTimestep();
+                    Debug.WriteLine($"lag: {lag}");
                     lag -= FixedDeltaTime;
                 }
-
-                form.Refresh(); // causes OnPaint event
             }
         }
 
