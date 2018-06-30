@@ -25,8 +25,8 @@ namespace Engine
             get
             {
                 return
-                    Abs(x) < 0.001f &&
-                    Abs(y) < 0.001f;
+                    Abs(x) < Epsilon &&
+                    Abs(y) < Epsilon;
             }
         }
 

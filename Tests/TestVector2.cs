@@ -11,34 +11,19 @@ public class TestVector2
     {
         var vector = new Vector2(5f, 8f);
 
-        Assert.AreEqual(vector.x, 5f);
-        Assert.AreEqual(vector.y, 8f);
-    }
-
-    [Test]
-    public void EqualityTrue()
-    {
-        var a = new Vector2(5f, 10f);
-        var b = new Vector2(5f, 10f);
-
-        Assert.That(a, Is.EqualTo(b));
-    }
-
-    [Test]
-    public void EqualityFalse()
-    {
-        var a = new Vector2(5f, 10f);
-        var b = new Vector2(5f, 11f);
-
-        Assert.That(a, Is.Not.EqualTo(b));
+        Assert.That(vector.x, Is.EqualTo(5f));
+        Assert.That(vector.y, Is.EqualTo(8f));
     }
 
     [Test]
     public void EqualityOperator()
     {
-        var a = new Vector2(10f, 10f);
-        var b = new Vector2(10f, 10f);
-        var c = new Vector2(15f, 13f);
+        var a = new Vector2(1f, 1f);
+        var b = new Vector2(1f, 1f);
+        var c = new Vector2(1f, 2f);
+
+        Assert.That(a, Is.EqualTo(b));
+        Assert.That(a, Is.Not.EqualTo(c));
 
         Assert.True (a == b);
         Assert.False(a == c);
@@ -47,10 +32,30 @@ public class TestVector2
     }
 
     [Test]
+    public void MathOperators()
+    {
+        var a = new Vector2(1f, 2f);
+        var b = new Vector2(4f, 8f);
+        float scale = 16f;
+
+        Vector2 negated    = -a;
+        Vector2 sum        = a + b;
+        Vector2 difference = a - b;
+        Vector2 multiplied = a * scale;
+        Vector2 divided    = a / scale;
+
+        Assert.That(negated   , Is.EqualTo(new Vector2(-1f, -2f)));
+        Assert.That(sum       , Is.EqualTo(new Vector2( 5f, 10f)));
+        Assert.That(difference, Is.EqualTo(new Vector2(-3f, -6f)));
+        Assert.That(multiplied, Is.EqualTo(new Vector2(16f, 32f)));
+        Assert.That(divided   , Is.EqualTo(new Vector2(1f / 16f, 2f / 16f)));
+    }
+
+    [Test]
     public void Add()
     {
         var a = new Vector2(10f, 10f);
-        var b = new Vector2(5f, -5f);
+        var b = new Vector2(5f , -5f);
 
         Vector2 result = a.Add(b);
 
@@ -89,7 +94,7 @@ public class TestVector2
 
         var length = vector.magnitude;
 
-        Assert.AreEqual(length, Mathf.Sqrt(10f * 10f + 10f * 10f));
+        Assert.AreEqual(length, Sqrt(10f * 10f + 10f * 10f));
     }
 
     [Test]
@@ -177,22 +182,28 @@ public class TestVector2
         Assert.AreEqual(length, vec.magnitude);
     }
 
-    /*[Test]
-    public void GetUnitVector(
-        [Range(0f, 2f * PI, step: 0.5f)] float angleRadians
-    )
+    [Test]
+    public void IsZero()
     {
-        float angleDegrees = angleRadians * radToDeg;
+        var a = new Vector2( 0f, 0f);
+        var b = new Vector2( 1f, 1f) / 100000f;
+        var c = new Vector2(-1f, 1f) / 100000f;
 
-        var vecFromRadians = Vector2.GetUnitVectorRadians(angleRadians);
-        var vecFromDegrees = Vector2.GetUnitVectorDegrees(angleDegrees);
+        var d = new Vector2(10f ,  0f  );
+        var e = new Vector2(0f  ,  10f );
+        var f = new Vector2(-10f, -0.1f);
 
-        Assert.AreEqual(vecFromRadians, vecFromDegrees);
-        Assert.AreEqual(1f, vecFromRadians.Length(), delta: 0.001f);
-    }*/
+        Assert.IsTrue(a.isZero);
+        Assert.IsTrue(b.isZero);
+        Assert.IsTrue(c.isZero);
+
+        Assert.IsFalse(d.isZero);
+        Assert.IsFalse(e.isZero);
+        Assert.IsFalse(f.isZero);
+    }
 
     [Test, TestCaseSource("reflectTestCases")]
-    public void Reflect(Vector2 vector, Vector2 normal, Vector2 expectedResult)
+    public void Reflected(Vector2 vector, Vector2 normal, Vector2 expectedResult)
     {
         Assert.That(vector.Reflected(normal), Is.EqualTo(expectedResult));
     }

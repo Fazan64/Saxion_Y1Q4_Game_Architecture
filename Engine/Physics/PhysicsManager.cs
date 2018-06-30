@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Engine.Internal
 {
+    /// Steps the physics simulation,
+    /// Calls OnCollision and OnTrigger methods on all registered EngineObject|s
+    /// 
     internal class PhysicsManager
     {
         private readonly HashSet<EngineObject> registered = new HashSet<EngineObject>();
@@ -90,7 +93,9 @@ namespace Engine.Internal
 
         private static Collision MakeCollisionForB(CollisionEvent c)
         {
-            return new Collision(c.gameObjectA, c.colliderA, c.rigidbodyA);
+            return new Collision(
+                c.gameObjectA, c.colliderA, c.rigidbodyA
+            );
         }
     }
 }

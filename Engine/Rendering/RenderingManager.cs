@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace Engine
 {
+    /// Renders all added EngineObject|s that implement IRenderer
     internal class RenderingManager
     {
         private readonly HashSet<IRenderer> registered = new HashSet<IRenderer>();

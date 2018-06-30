@@ -5,6 +5,11 @@ using NUnit.Framework;
 
 namespace Engine.Internal
 {
+    /// Responsible for calling the Start and Update methods on
+    /// added EngineObject|s.
+    /// `Step` is intended to be called every fixed timestep.
+    /// It executes Start on any EngineObject|s added since the last `Step`.
+    /// Then executes `Update` of all added EngineObjects|s.
     internal class UpdateManager
     {
         private Action startActions;
@@ -15,7 +20,7 @@ namespace Engine.Internal
         public void Step()
         {
             // Calling startActions may cause more objects being created.
-            // Makes sure the additional Start calls are also called.
+            // This makes sure the additional Start calls are also called.
             while (startActions != null)
             {
                 Action copy = startActions;
@@ -30,7 +35,7 @@ namespace Engine.Internal
         {
             if (engineObject is IBehaviour behaviour)
             {
-                Assert.IsFalse(registered.Contains(behaviour));
+                Assert.That(registered, Has.No.Member(behaviour));
 
                 Add(behaviour.GetCallbacks());
                 registered.Add(behaviour);
@@ -41,7 +46,7 @@ namespace Engine.Internal
         {
             if (engineObject is IBehaviour behaviour)
             {
-                Assert.IsTrue(registered.Contains(behaviour));
+                Assert.That(registered, Has.Member(behaviour));
 
                 Remove(behaviour.GetCallbacks());
                 registered.Remove(behaviour);

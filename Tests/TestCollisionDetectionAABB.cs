@@ -9,10 +9,10 @@ using static Engine.Mathf;
 public class TestCollisionDetectionAABB
 {
     [Test, TestCaseSource("checkIntersectTestCases")]
-    public void CheckIntersect(Rect a, Rect b, Hit? expectedHit)
+    public void CheckIntersect(Rect mover, Rect stator, Hit? expectedHit)
     {
         Hit hit;
-        bool didHit = CollisionDetectionHelper.CheckIntersect(a, b, out hit);
+        bool didHit = CollisionDetectionHelper.CheckIntersect(mover, stator, out hit);
 
         if (!expectedHit.HasValue)
         {
@@ -21,24 +21,31 @@ public class TestCollisionDetectionAABB
         }
 
         Assert.That(didHit);
-        Assert.That(hit.position, Is.EqualTo(expectedHit.Value.position));
-        Assert.That(hit.delta   , Is.EqualTo(expectedHit.Value.delta   ));
         Assert.That(hit.normal  , Is.EqualTo(expectedHit.Value.normal  ));
+        Assert.That(hit.delta   , Is.EqualTo(expectedHit.Value.delta   ));
+        Assert.That(hit.position, Is.EqualTo(expectedHit.Value.position));
     }
 
     public static TestCaseData[] checkIntersectTestCases = new[]
     {
+        #region No penetration
         new TestCaseData(
-            Rect.FromCenterAndHalfDiagonal(Vector2.zero, new Vector2(20f, 20f)),
-            Rect.FromCenterAndHalfDiagonal(new Vector2(35f, 20f), new Vector2(20f, 20f)),
-            new Hit()
-            {
-                normal   = new Vector2(-1f, 0f),
-                delta    = new Vector2(-5f, 0f),
-                position = new Vector2(15f, 0f)
-            }
+            new Rect(-10f, 1f, 1f, 1f),
+            new Rect( 0f , 0f, 1f, 1f),
+            null
         ),
-        #region Sides simple
+        new TestCaseData(
+            new Rect(1f , 10f, 1f, 1f),
+            new Rect(0f ,  0f, 1f, 1f),
+            null
+        ),
+        new TestCaseData(
+            new Rect(1f  , 1f, 1f, 1f),
+            new Rect(0f  , 0f, 1f, 1f),
+            null
+        ),
+        #endregion
+        #region Single-axis penetration
         new TestCaseData(
             new Rect(0.9f, 0f, 1f, 1f),
             new Rect(0f  , 0f, 1f, 1f),
@@ -80,7 +87,7 @@ public class TestCollisionDetectionAABB
             }
         ),
         #endregion
-        #region Sides complex
+        #region Non-equal penetration)
         new TestCaseData(
             new Rect(0.9f, 0.2f, 1f, 1f),
             new Rect(0f  , 0f  , 1f, 1f),
@@ -122,7 +129,7 @@ public class TestCollisionDetectionAABB
             }
         ),
         #endregion
-        #region Corners
+        #region Equal penetration
         new TestCaseData(
             new Rect(0.9f, 0.9f, 1f, 1f),
             new Rect(0f  , 0f  , 1f, 1f),
@@ -140,7 +147,7 @@ public class TestCollisionDetectionAABB
             {
                 normal   = new Vector2(-1f  , 1f  ),
                 delta    = new Vector2(-0.1f, 0.1f),
-                position = new Vector2(-1f  , 1f  ),
+                position = new Vector2( 0f  , 1f  ),
             }
         ),
         new TestCaseData(
@@ -150,7 +157,7 @@ public class TestCollisionDetectionAABB
             {
                 normal   = new Vector2(1f  , -1f  ),
                 delta    = new Vector2(0.1f, -0.1f),
-                position = new Vector2(1f  , -1f  ),
+                position = new Vector2(1f  ,  0f  ),
             }
         ),
         new TestCaseData(
@@ -160,7 +167,7 @@ public class TestCollisionDetectionAABB
             {
                 normal   = new Vector2(-1f  , -1f  ),
                 delta    = new Vector2(-0.1f, -0.1f),
-                position = new Vector2(-1f  , -1f  ),
+                position = new Vector2( 0f  ,  0f  ),
             }
         ),
         #endregion

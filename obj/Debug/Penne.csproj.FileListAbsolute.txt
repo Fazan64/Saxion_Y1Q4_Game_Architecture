@@ -8,3 +8,6 @@
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spagetti.exe
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Spagetti.pdb
 /Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/obj/Debug/Penne.csprojResolveAssemblyReference.cache
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/nunit.framework.dll
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/nunit.framework.pdb
+/Users/maks/Desktop/Saxion/Y1Q4/Game Architecture/Spaghetti/bin/Debug/nunit.framework.xml

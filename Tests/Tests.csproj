@@ -32,7 +32,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
     <Compile Include="TestCollisionDetectionAABB.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="TestVector2.cs" />

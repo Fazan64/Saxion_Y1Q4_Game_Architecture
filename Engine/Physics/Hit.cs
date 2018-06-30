@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-    /// What's returned by Collider.CheckIntersect();
+    /// What's returned by Collider.CheckIntersect;
     public struct Hit
     {
         public Vector2 normal;
