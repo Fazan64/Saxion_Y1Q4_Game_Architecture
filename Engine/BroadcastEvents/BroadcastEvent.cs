@@ -27,17 +27,7 @@ namespace Engine
         {
             Assert.IsFalse(isDelivered, $"{this} has already been delivered!");
             OnDeliver?.Invoke((T)this);
-            isDelivered = true;;
-        }
-    }
-
-    public class TestEvent : BroadcastEvent<TestEvent>
-    {
-        public readonly string testData;
-
-        public TestEvent(string testData)
-        {
-            this.testData = testData;
+            isDelivered = true;
         }
     }
 }

@@ -102,12 +102,12 @@ namespace Engine
                 lag += elapsed;
                 previous = current;
 
-                Debug.WriteLine($"fps: {1f / elapsed}");
+                //Debug.WriteLine($"fps: {1f / elapsed}");
 
                 while (lag >= FixedDeltaTime)
                 {
                     UpdateFixedTimestep();
-                    Debug.WriteLine($"lag: {lag}");
+                    //Debug.WriteLine($"lag: {lag}");
                     lag -= FixedDeltaTime;
                 }
             }

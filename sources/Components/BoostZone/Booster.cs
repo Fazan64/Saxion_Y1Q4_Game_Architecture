@@ -11,7 +11,7 @@ namespace Pong
         {
             if (!collider.gameObject.Has<Ball>()) return;
 
-            new BallCollidedWithBoosterEvent(collider.gameObject).Post();
+            new BallBoostEvent(collider.gameObject).Post();
         }
     }
 }

@@ -54,7 +54,7 @@
     <Compile Include="Engine\BroadcastEvents\IEventReceiver.cs" />
     <Compile Include="Engine\BroadcastEvents\EventsManager.cs" />
     <Compile Include="Sources\Events\PointScoreEvent.cs" />
-    <Compile Include="Sources\Events\BallCollidedWithBoosterEvent.cs" />
+    <Compile Include="Sources\Events\BallBoostEvent.cs" />
     <Compile Include="Sources\Components\Ball\Ball.cs" />
     <Compile Include="Sources\Components\Ball\BallBoostEffectRenderer.cs" />
     <Compile Include="Sources\Components\BoostZone\Booster.cs" />
@@ -89,6 +89,8 @@
     <Compile Include="Engine\Services.cs" />
     <Compile Include="Engine\StateMachine\FiniteStateMachine.cs" />
     <Compile Include="Engine\StateMachine\FsmState.cs" />
+    <Compile Include="Sources\Components\Ball\States\BallStunnedState.cs" />
+    <Compile Include="Sources\Components\Ball\States\BallMovingState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ball.png">
@@ -119,6 +121,7 @@
     <Folder Include="Engine\Physics\BroadcastEvents\" />
     <Folder Include="Engine\Core\" />
     <Folder Include="Engine\StateMachine\" />
+    <Folder Include="Sources\Components\Ball\States\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
