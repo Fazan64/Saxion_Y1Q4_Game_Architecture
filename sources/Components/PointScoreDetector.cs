@@ -1,8 +1,9 @@
 ﻿using System;
 using Engine;
 
-namespace Penne
+namespace Pong
 {
+    /// Fires a PointScoreEvent upon collision with a ball.
     public class PointScoreDetector : Component
     {
         public bool isRightPlayer { get; set; }

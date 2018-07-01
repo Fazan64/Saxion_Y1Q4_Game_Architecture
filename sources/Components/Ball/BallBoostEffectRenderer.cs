@@ -2,7 +2,7 @@
 using System.Drawing;
 using Engine;
 
-namespace Penne
+namespace Pong
 {
     /// Draws a custom `boost` effect around its gameobject.
     public class BallBoostEffectRenderer : Component, IRenderer

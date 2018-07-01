@@ -2,7 +2,7 @@
 using Engine;
 using NUnit.Framework;
 
-namespace Penne
+namespace Pong
 {
     public class Paddle : Component
     {

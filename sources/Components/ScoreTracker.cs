@@ -2,7 +2,7 @@
 using System.Drawing;
 using Engine;
 
-namespace Penne
+namespace Pong
 {
     /// Keeps track of and renders the score of the players.
     public class ScoreTracker : Component, IRenderer, IEventReceiver<PointScoreEvent>

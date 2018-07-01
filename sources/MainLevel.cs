@@ -2,8 +2,9 @@
 using Engine;
 using System.Drawing;
 
-namespace Penne
+namespace Pong
 {
+    /// The scene.
     public class MainLevel : GameObject
     {
         private GameObject ball;

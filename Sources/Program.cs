@@ -1,6 +1,6 @@
 ﻿using Engine;
 
-namespace Penne
+namespace Pong
 {
     static class Program
     {

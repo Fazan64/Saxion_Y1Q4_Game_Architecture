@@ -39,12 +39,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\AiPaddle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\UserPaddle.cs" />
-    <Compile Include="Engine\GameObject.cs" />
-    <Compile Include="Engine\Component.cs" />
-    <Compile Include="Engine\Components.cs" />
     <Compile Include="Engine\Utils\DelegateHelper.cs" />
     <Compile Include="Engine\Utils\ObjectExtensions.cs" />
     <Compile Include="Engine\EngineObject.cs" />
@@ -53,12 +49,10 @@
     <Compile Include="Engine\Update\Callbacks.cs" />
     <Compile Include="Engine\Rendering\IRenderer.cs" />
     <Compile Include="Engine\Rendering\RenderingManager.cs" />
-    <Compile Include="Engine\Components\ImageRenderer.cs" />
-    <Compile Include="Engine\Components\Rigidbody.cs" />
     <Compile Include="Sources\MainLevel.cs" />
-    <Compile Include="Engine\Events\BroadcastEvent.cs" />
-    <Compile Include="Engine\Events\IEventReceiver.cs" />
-    <Compile Include="Engine\Events\EventsManager.cs" />
+    <Compile Include="Engine\BroadcastEvents\BroadcastEvent.cs" />
+    <Compile Include="Engine\BroadcastEvents\IEventReceiver.cs" />
+    <Compile Include="Engine\BroadcastEvents\EventsManager.cs" />
     <Compile Include="Sources\Events\PointScoreEvent.cs" />
     <Compile Include="Sources\Events\BallCollidedWithBoosterEvent.cs" />
     <Compile Include="Sources\Components\Ball\Ball.cs" />
@@ -87,6 +81,14 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sources\Program.cs" />
+    <Compile Include="Engine\Rendering\ImageRenderer.cs" />
+    <Compile Include="Engine\Physics\Rigidbody.cs" />
+    <Compile Include="Engine\Core\Component.cs" />
+    <Compile Include="Engine\Core\Components.cs" />
+    <Compile Include="Engine\Core\GameObject.cs" />
+    <Compile Include="Engine\Services.cs" />
+    <Compile Include="Engine\StateMachine\FiniteStateMachine.cs" />
+    <Compile Include="Engine\StateMachine\FsmState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ball.png">
@@ -106,8 +108,7 @@
     <Folder Include="Engine\" />
     <Folder Include="Engine\Update\" />
     <Folder Include="Engine\Rendering\" />
-    <Folder Include="Engine\Components\" />
-    <Folder Include="Engine\Events\" />
+    <Folder Include="Engine\BroadcastEvents\" />
     <Folder Include="Sources\Events\" />
     <Folder Include="Sources\Components\" />
     <Folder Include="Sources\Components\Ball\" />
@@ -116,6 +117,8 @@
     <Folder Include="Engine\Physics\Colliders\" />
     <Folder Include="Sources\Components\Paddles\" />
     <Folder Include="Engine\Physics\BroadcastEvents\" />
+    <Folder Include="Engine\Core\" />
+    <Folder Include="Engine\StateMachine\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using Engine;
 
-namespace Penne
+namespace Pong
 {
     public class PointScoreEvent : BroadcastEvent<PointScoreEvent>
     {

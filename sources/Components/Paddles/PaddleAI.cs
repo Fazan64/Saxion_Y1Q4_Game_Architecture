@@ -2,7 +2,7 @@
 using Engine;
 using NUnit.Framework;
 
-namespace Penne
+namespace Pong
 {
     /// An AI-driven controller of a Paddle.
     /// A Paddle must be present on the same GameObject.
@@ -17,7 +17,7 @@ namespace Penne
             Assert.IsNotNull(paddle);
 
             Assert.IsNotNull(ball);
-            gameObject.position.y = ball.y;
+            gameObject.position.y = ball.position.y;
         }
 
         void Update()

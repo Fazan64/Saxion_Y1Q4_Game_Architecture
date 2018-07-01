@@ -16,9 +16,6 @@ namespace Engine
 
         public static Game main { get; private set; }
 
-        // TODO extract into a service.
-        public static readonly Random random = new Random(1);
-
         public readonly Vector2 size;
 
         private readonly HashSet<EngineObject> addedObjects;
@@ -49,7 +46,7 @@ namespace Engine
             form.Paint += OnFormPaint;
         }
 
-        public void Add(EngineObject engineObject)
+        internal void Add(EngineObject engineObject)
         {
             updateManager.Add(engineObject);
             physicsManager.Add(engineObject);
@@ -59,7 +56,7 @@ namespace Engine
             addedObjects.Add(engineObject);
         }
 
-        public void Remove(EngineObject engineObject)
+        internal void Remove(EngineObject engineObject)
         {
             updateManager.Remove(engineObject);
             physicsManager.Remove(engineObject);
@@ -69,17 +66,17 @@ namespace Engine
             addedObjects.Remove(engineObject);
         }
 
+        internal void Post(IBroadcastEvent engineEvent)
+        {
+            eventsManager.Post(engineEvent);
+        }
+
         public void DestroyAll()
         {
             foreach (EngineObject engineObject in addedObjects)
             {
                 engineObject.Destroy();
             }
-        }
-
-        internal void Post(IBroadcastEvent engineEvent)
-        {
-            eventsManager.Post(engineEvent);
         }
 
         public void Run()

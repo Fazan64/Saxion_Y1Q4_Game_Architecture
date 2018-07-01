@@ -11,13 +11,13 @@ namespace Engine.Internal
     {
         private readonly HashSet<EngineObject> registered = new HashSet<EngineObject>();
 
-        private readonly HashSet<GameObjectPhysics> gameObjectsPhysics;
-        private readonly HashSet<Collider> colliders;
+        private readonly List<GameObjectPhysics> gameObjectsPhysics;
+        private readonly List<Collider> colliders;
 
         public PhysicsManager()
         {
-            gameObjectsPhysics = new HashSet<GameObjectPhysics>();
-            colliders = new HashSet<Collider>();
+            gameObjectsPhysics = new List<GameObjectPhysics>();
+            colliders = new List<Collider>();
 
             CollisionEvent.OnDeliver += On;
             TriggerEvent.OnDeliver   += On;
@@ -29,13 +29,11 @@ namespace Engine.Internal
 
             if (engineObject is GameObject gameObject)
             {
-                bool didAdd = gameObjectsPhysics.Add(gameObject.physics);
-                Assert.IsTrue(didAdd);
+                gameObjectsPhysics.Add(gameObject.physics);
             }
             else if (engineObject is Collider collider)
             {
-                bool didAdd = colliders.Add(collider);
-                Assert.IsTrue(didAdd);
+                colliders.Add(collider);
             }
             else return;
 

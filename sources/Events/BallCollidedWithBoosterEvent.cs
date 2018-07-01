@@ -1,7 +1,7 @@
 ﻿using System;
 using Engine;
 
-namespace Penne
+namespace Pong
 {
     public class BallCollidedWithBoosterEvent : BroadcastEvent<BallCollidedWithBoosterEvent>
     {

@@ -7,6 +7,7 @@ using NUnit.Framework;
 namespace Engine
 {
     /// Stores and retrieves the components of a GameObject
+    /// Also exposes events for component additions and removals.
     public class Components : IEnumerable<Component>
     {
         public delegate void ComponentEventHandler(GameObject gameObject, Component component);

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Engine;
 using NUnit.Framework;
 
-namespace Penne
+namespace Pong
 {
     public class Ball : Component, 
         IEventReceiver<PointScoreEvent>,
@@ -78,7 +78,7 @@ namespace Penne
 
             rb.velocity = new Vector2(
                 InitialHorizontalSpeed * Math.Sign(rb.velocity.x),
-                MaxInitialVerticalSpeed * (float)(Game.random.NextDouble() - 0.5) * 2f
+                MaxInitialVerticalSpeed * (float)(Services.Get<Random>().NextDouble() - 0.5) * 2f
             );
 
             isBoosting = false;
