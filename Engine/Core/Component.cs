@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-    public class Component : EngineObject, IBehaviour
+    public class Component : EngineObject
     {
         public GameObject gameObject;
 

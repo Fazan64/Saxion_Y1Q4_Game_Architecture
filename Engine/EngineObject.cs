@@ -4,14 +4,13 @@ using Engine.Internal;
 
 namespace Engine
 {
-    public class EngineObject : IBehaviour
+    public class EngineObject
     {
         public bool isDestroyed { get; private set; }
 
         protected Game game => Game.main;
 
-        private readonly Callbacks callbacks;
-        Callbacks IBehaviour.GetCallbacks() => callbacks;
+        internal readonly Callbacks callbacks;
 
         public EngineObject()
         {

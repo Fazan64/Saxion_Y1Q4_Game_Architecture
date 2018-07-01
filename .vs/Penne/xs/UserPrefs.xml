@@ -1,12 +1,15 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/StateMachine/FiniteStateMachine.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Game.cs">
     <Files>
       <File FileName="Sources/Components/Ball/Ball.cs" Line="9" Column="18" />
-      <File FileName="Sources/Components/Ball/States/BallMovingState.cs" Line="9" Column="9" />
+      <File FileName="Sources/Components/Ball/States/BallMovingState.cs" Line="9" Column="39" />
       <File FileName="Sources/MainLevel.cs" Line="92" Column="1" />
       <File FileName="Engine/BroadcastEvents/EventsManager.cs" Line="58" Column="38" />
       <File FileName="Engine/BroadcastEvents/BroadcastEvent.cs" Line="8" Column="14" />
       <File FileName="Engine/StateMachine/FiniteStateMachine.cs" Line="18" Column="16" />
+      <File FileName="Engine/EngineObject.cs" Line="7" Column="30" />
+      <File FileName="Engine/Core/Component.cs" Line="7" Column="38" />
+      <File FileName="Engine/Game.cs" Line="97" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,9 +22,9 @@
                 <Node name="Physics" expanded="True">
                   <Node name="Colliders" expanded="True" />
                 </Node>
-                <Node name="StateMachine" expanded="True">
-                  <Node name="FiniteStateMachine.cs" selected="True" />
-                </Node>
+                <Node name="StateMachine" expanded="True" />
+                <Node name="Update" expanded="True" />
+                <Node name="Game.cs" selected="True" />
               </Node>
               <Node name="Sources" expanded="True">
                 <Node name="Components" expanded="True">

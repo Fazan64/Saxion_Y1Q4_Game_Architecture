@@ -24,28 +24,21 @@ namespace Engine.Internal
 
         public GameObjectPhysics(GameObject gameObject)
         {
-            AddOwnCallbacksOf(gameObject);
-            AddExistingComponentsOf(gameObject);
+            Initialize(gameObject);
 
             gameObject.components.OnComponentAdded   += OnComponentAdded;
             gameObject.components.OnComponentRemoved += OnComponentRemoved;
         }
 
-        public void AddOwnCallbacksOf(GameObject gameObject)
+        private void Initialize(GameObject gameObject)
         {
-            Callbacks callbacks = ((IBehaviour)gameObject).GetCallbacks();
-            onCollision = callbacks.onCollision;
-            onTrigger   = callbacks.onTrigger;
-        }
-
-        private void AddExistingComponentsOf(GameObject gameObject)
-        {
-            rigidbody = rigidbody ?? gameObject.Get<Rigidbody>();
+            rigidbody = gameObject.Get<Rigidbody>();
             _colliders.AddRange(gameObject.GetAll<Collider>());
 
-            foreach (var behaviour in gameObject.GetAll<IBehaviour>())
+            AddCallbacksFrom(gameObject);
+            foreach (Component component in gameObject.components)
             {
-                AddCallbacksFrom(behaviour);
+                AddCallbacksFrom(component);
             }
         }
 
@@ -53,11 +46,8 @@ namespace Engine.Internal
         {
             bool didUpdate = false;
 
-            if (component is IBehaviour behaviour)
-            {
-                AddCallbacksFrom(behaviour);
-                didUpdate = true;
-            }
+            AddCallbacksFrom(component);
+            didUpdate = true;
 
             if (component is Rigidbody newRigidbody)
             {
@@ -84,11 +74,8 @@ namespace Engine.Internal
         {
             bool didUpdate = false;
 
-            if (component is IBehaviour behaviour)
-            {
-                RemoveCallbacksFrom(behaviour);
-                didUpdate = true;
-            }
+            RemoveCallbacksFrom(component);
+            didUpdate = true;
 
             if (component is Rigidbody)
             {
@@ -111,16 +98,16 @@ namespace Engine.Internal
             }
         }
 
-        private void AddCallbacksFrom(IBehaviour behaviour)
+        private void AddCallbacksFrom(EngineObject engineObject)
         {
-            Callbacks callbacks = behaviour.GetCallbacks();
+            Callbacks callbacks = engineObject.callbacks;
             onCollision += callbacks.onCollision;
             onTrigger   += callbacks.onTrigger;
         }
 
-        private void RemoveCallbacksFrom(IBehaviour behaviour)
+        private void RemoveCallbacksFrom(EngineObject engineObject)
         {
-            Callbacks callbacks = behaviour.GetCallbacks();
+            Callbacks callbacks = engineObject.callbacks;
             onCollision -= callbacks.onCollision;
             onTrigger   -= callbacks.onTrigger;
         }

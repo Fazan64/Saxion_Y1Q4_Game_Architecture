@@ -7,15 +7,15 @@ namespace Engine.Internal
 {
     /// Responsible for calling the Start and Update methods on
     /// added EngineObject|s.
-    /// `Step` is intended to be called every fixed timestep.
-    /// It executes Start on any EngineObject|s added since the last `Step`.
-    /// Then executes `Update` of all added EngineObjects|s.
+    /// Step is intended to be called every fixed timestep.
+    /// It executes Start on any EngineObject|s added since the last Step.
+    /// Then executes Update of all added EngineObjects|s.
     internal class UpdateManager
     {
         private Action startActions;
         private Action updateActions;
 
-        private readonly HashSet<IBehaviour> registered = new HashSet<IBehaviour>();
+        private readonly HashSet<EngineObject> registered = new HashSet<EngineObject>();
 
         public void Step()
         {
@@ -33,34 +33,20 @@ namespace Engine.Internal
 
         public void Add(EngineObject engineObject)
         {
-            if (engineObject is IBehaviour behaviour)
-            {
-                Assert.That(registered, Has.No.Member(behaviour));
+            Assert.That(registered, Has.No.Member(engineObject));
 
-                Add(behaviour.GetCallbacks());
-                registered.Add(behaviour);
-            }
+            Add(engineObject.callbacks);
+
+            registered.Add(engineObject);
         }
 
         public void Remove(EngineObject engineObject)
         {
-            if (engineObject is IBehaviour behaviour)
-            {
-                Assert.That(registered, Has.Member(behaviour));
+            Assert.That(registered, Has.Member(engineObject));
 
-                Remove(behaviour.GetCallbacks());
-                registered.Remove(behaviour);
-            }
-        }
+            Remove(engineObject.callbacks);
 
-        public bool Contains(EngineObject engineObject)
-        {
-            if (engineObject is IBehaviour behaviour)
-            {
-                return registered.Contains(behaviour);
-            }
-
-            return false;
+            registered.Remove(engineObject);
         }
 
         private void Add(Callbacks callbacks)

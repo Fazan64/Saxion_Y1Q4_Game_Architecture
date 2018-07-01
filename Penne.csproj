@@ -40,11 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sources\UserPaddle.cs" />
     <Compile Include="Engine\Utils\DelegateHelper.cs" />
     <Compile Include="Engine\Utils\ObjectExtensions.cs" />
     <Compile Include="Engine\EngineObject.cs" />
-    <Compile Include="Engine\Update\IBehaviour.cs" />
     <Compile Include="Engine\Update\UpdateManager.cs" />
     <Compile Include="Engine\Update\Callbacks.cs" />
     <Compile Include="Engine\Rendering\IRenderer.cs" />
