@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Core/GameObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/TestCollisionDetectionAABB.cs">
     <Files>
       <File FileName="Sources/Components/Ball/Ball.cs" Line="13" Column="9" />
       <File FileName="Sources/Components/Ball/States/BallMovingState.cs" Line="27" Column="77" />
@@ -8,57 +8,15 @@
       <File FileName="Engine/BroadcastEvents/BroadcastEvent.cs" Line="27" Column="10" />
       <File FileName="Engine/StateMachine/FiniteStateMachine.cs" Line="18" Column="16" />
       <File FileName="Engine/Core/GameObject.cs" Line="15" Column="16" />
+      <File FileName="Tests/TestCollisionDetectionAABB.cs" Line="4" Column="7" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Penne" expanded="True">
-            <Node name="Penne" expanded="True">
-              <Node name="Engine" expanded="True">
-                <Node name="BroadcastEvents" expanded="True" />
-                <Node name="Core" expanded="True">
-                  <Node name="GameObject.cs" selected="True" />
-                </Node>
-                <Node name="Physics" expanded="True">
-                  <Node name="BroadcastEvents" expanded="True" />
-                  <Node name="Colliders" expanded="True" />
-                </Node>
-                <Node name="StateMachine" expanded="True" />
-                <Node name="Update" expanded="True" />
-                <Node name="Utils" expanded="True" />
-              </Node>
-              <Node name="Sources" expanded="True">
-                <Node name="Components" expanded="True">
-                  <Node name="Ball" expanded="True">
-                    <Node name="States" expanded="True" />
-                  </Node>
-                  <Node name="BoostZone" expanded="True" />
-                  <Node name="Paddles" expanded="True" />
-                </Node>
-                <Node name="Events" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Tests" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="Penne" expanded="True">
-            <Node name="Tests" expanded="True">
-              <Node name="TestVector2" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.Tests PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Pong PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Penne PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

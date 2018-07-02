@@ -7,9 +7,7 @@ namespace Pong
     /// The scene.
     public class MainLevel : GameObject
     {
-        private GameObject ball;
-        private GameObject leftPaddle;
-        private GameObject rightPaddle; // TEMP. Also AI for now. TODO add a player-controlled paddle
+        const float PaddleOffset = 20f;
 
         public MainLevel() : base("MainLevel") {}
 
@@ -18,10 +16,10 @@ namespace Pong
             AddTopAndBottomWalls();
             AddSideWalls();
 
-            ball = AddBall();
+            GameObject ball = AddBall();
 
-            leftPaddle  = AddPaddle(20f, "PaddleLeft", ball);
-            rightPaddle = AddPaddle(game.size.x - 1f - 20f, "PaddleRight", ball);
+            GameObject leftPaddle  = AddPaddle(PaddleOffset, "PaddleLeft", ball);
+            GameObject rightPaddle = AddPaddle(game.size.x - 1f - PaddleOffset, "PaddleRight", ball);
 
             AddBooster();
 
@@ -94,7 +92,7 @@ namespace Pong
             go.Add<ImageRenderer>().SetImage("assets/paddle.png");
             go.Add<AABBCollider>().rect = new Rect(-4f, -32f, 8f, 64f);
             go.Add<Paddle>();
-            go.Add<PaddleAI>().SetBall(ball); // TODO Make PaddleAI|s find the ball themselves.
+            go.Add<PaddleAI>().SetBall(ball);
 
             return go;
         }

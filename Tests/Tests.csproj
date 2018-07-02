@@ -40,9 +40,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Penne.csproj">
+    <ProjectReference Include="..\Pong.csproj">
       <Project>{422FCC20-EE8D-4950-A9A3-69EF13BEE894}</Project>
-      <Name>Penne</Name>
+      <Name>Pong</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
