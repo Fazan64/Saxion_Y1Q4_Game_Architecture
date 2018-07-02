@@ -8,8 +8,8 @@ namespace Pong
         IEventReceiver<PointScoreEvent>,
         IEventReceiver<BallBoostEvent>
     {
-        private const float InitialHorizontalSpeed = 200f;
-        private const float MaxInitialVerticalSpeed = 70f;
+        private const float InitialHorizontalSpeed  = 360f * 0.5f;
+        private const float MaxInitialVerticalSpeed = 360f;
 
         private Rigidbody rigidbody;
         private bool nextTowardsRight;
@@ -24,7 +24,8 @@ namespace Pong
             float direction = nextTowardsRight ? 1f : -1f;
 
             Random random = Services.Get<Random>();
-            float verticalSpeedModifier = (float)(random.NextDouble() + 0.5);
+            Assert.IsNotNull(random);
+            float verticalSpeedModifier = (float)(random.NextDouble() + 0.5) * 0.15f;
 
             rigidbody.velocity = new Vector2(
                 InitialHorizontalSpeed  * direction,

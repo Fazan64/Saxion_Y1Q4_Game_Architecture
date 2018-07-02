@@ -12,7 +12,7 @@ namespace Pong
 
         public ScoreTracker()
         {
-            fontSheet = Image.FromFile("assets/digits.png");
+            fontSheet = Image.FromFile("Assets/digits.png");
         }
 
         void IRenderer.Render(Graphics graphics)

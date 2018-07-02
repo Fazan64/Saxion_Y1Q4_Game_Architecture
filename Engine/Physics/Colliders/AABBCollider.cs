@@ -6,6 +6,8 @@ namespace Engine
     // An axis-aligned bounding box
     public class AABBCollider : Collider
     {
+        /// The rect is in local coordinates, i.e. with origin being 
+        /// at the position of this GameObject.
         public Rect rect;
 
         internal override bool HitTest(Collider other, out Hit hit)

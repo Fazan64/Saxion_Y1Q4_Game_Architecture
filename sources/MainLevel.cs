@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace Pong
 {
-    /// The scene.
+    /// The main scene of the game. Creates all the GameObjects.
     public class MainLevel : GameObject
     {
         const float PaddleOffset = 20f;
@@ -61,7 +61,7 @@ namespace Pong
         {
             var go = new GameObject("Ball");
             go.Add<Ball>();
-            go.Add<ImageRenderer>().SetImage("assets/ball.png");
+            go.Add<ImageRenderer>().SetImage("Assets/ball.png");
             go.Add<Rigidbody>();
             go.Add<AABBCollider>().rect = new Rect(-4f, -4f, 8f, 8f);
 
@@ -75,7 +75,7 @@ namespace Pong
             go.Add<Booster>();
 
             var imageRenderer = go.Add<ImageRenderer>();
-            imageRenderer.SetImage("assets/booster.png");
+            imageRenderer.SetImage("Assets/booster.png");
             imageRenderer.pivot = Vector2.half;
 
             var aabb = go.Add<AABBCollider>();
@@ -89,7 +89,7 @@ namespace Pong
         {
             var go = new GameObject(paddleName);
             go.position = new Vector2(x, game.size.y * 0.5f);
-            go.Add<ImageRenderer>().SetImage("assets/paddle.png");
+            go.Add<ImageRenderer>().SetImage("Assets/paddle.png");
             go.Add<AABBCollider>().rect = new Rect(-4f, -32f, 8f, 64f);
             go.Add<Paddle>();
             go.Add<PaddleAI>().SetBall(ball);

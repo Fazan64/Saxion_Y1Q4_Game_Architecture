@@ -8,6 +8,9 @@ namespace Pong
     /// A Paddle must be present on the same GameObject.
     public class PaddleAI : Component
     {
+        /// Calculated to produce similar results to the original version.
+        const float SpeedModifier = 360f / 125f;
+
         private Paddle paddle;
         private GameObject ball;
 
@@ -29,7 +32,7 @@ namespace Pong
 
             float factor = 1f - Math.Abs(gameObject.position.x - ball.position.x) / game.size.x;
             float deltaY = ball.position.y - gameObject.position.y;
-            float yChange = factor * deltaY * Game.FixedDeltaTime * (125f / 60f);
+            float yChange = factor * deltaY * SpeedModifier * Game.FixedDeltaTime;
 
             Vector2 newPosition = gameObject.position;
             newPosition.y += yChange;

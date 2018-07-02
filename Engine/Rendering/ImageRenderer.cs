@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace Engine
 {
+    /// Renders a set image with a set pivot point in normalized coordinates.
     public class ImageRenderer : Component, IRenderer
     {
         public Image image { get; set; }
