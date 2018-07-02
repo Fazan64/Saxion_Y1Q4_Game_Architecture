@@ -6,7 +6,7 @@ namespace Engine
     public class GameObject : EngineObject
     {
         public string name { get; set; }
-        public Vector2 position;
+        public Vector2 position { get; set; }
 
         public readonly Components components;
 

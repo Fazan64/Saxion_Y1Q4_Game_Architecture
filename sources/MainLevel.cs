@@ -85,10 +85,10 @@ namespace Pong
             go.position = new Vector2(game.size.x * 0.5f, game.size.y * 0.25f);
         }
 
-        private static GameObject AddPaddle(float x, string name, GameObject ball)
+        private GameObject AddPaddle(float x, string paddleName, GameObject ball)
         {
-            var go = new GameObject(name);
-            go.position.x = x;
+            var go = new GameObject(paddleName);
+            go.position = new Vector2(x, game.size.y * 0.5f);
             go.Add<ImageRenderer>().SetImage("assets/paddle.png");
             go.Add<AABBCollider>().rect = new Rect(-4f, -32f, 8f, 64f);
             go.Add<Paddle>();

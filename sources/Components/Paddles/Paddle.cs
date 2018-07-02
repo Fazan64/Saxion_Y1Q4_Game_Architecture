@@ -13,7 +13,10 @@ namespace Pong
         {
             float minY = 0f               + VerticalPadding + SizeY * 0.5f;
             float maxY = game.size.y - 1f - VerticalPadding - SizeY * 0.5f;
-            gameObject.position.y = Mathf.Clamp(gameObject.position.y, minY, maxY);
+
+            Vector2 newPosition = gameObject.position;
+            newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
+            gameObject.position = newPosition;
         }
 
         void OnCollision(Collision collision)

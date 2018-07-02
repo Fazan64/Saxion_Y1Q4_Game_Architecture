@@ -17,7 +17,10 @@ namespace Pong
             Assert.IsNotNull(paddle);
 
             Assert.IsNotNull(ball);
-            gameObject.position.y = ball.position.y;
+
+            Vector2 newPosition = gameObject.position;
+            newPosition.y = ball.position.y;
+            gameObject.position = newPosition;
         }
 
         void Update()
@@ -28,7 +31,9 @@ namespace Pong
             float deltaY = ball.position.y - gameObject.position.y;
             float yChange = factor * deltaY * Game.FixedDeltaTime * (125f / 60f);
 
-            gameObject.position.y += yChange;
+            Vector2 newPosition = gameObject.position;
+            newPosition.y += yChange;
+            gameObject.position = newPosition;
         }
 
         public void SetBall(GameObject ball)
