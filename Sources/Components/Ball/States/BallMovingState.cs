@@ -11,51 +11,42 @@ namespace Pong
         private const float InitialHorizontalSpeed  = 360f * 0.5f;
         private const float MaxInitialVerticalSpeed = 360f;
 
-        private Rigidbody rigidbody;
-        private bool nextTowardsRight;
+        private bool nextTimeStartTowardsRight;
+        private Random random;
 
         public override void Enter()
         {
             base.Enter();
 
-            rigidbody = rigidbody ?? Get<Rigidbody>();
-            Assert.IsNotNull(rigidbody);
-
-            float direction = nextTowardsRight ? 1f : -1f;
-
-            Random random = Services.Get<Random>();
-            Assert.IsNotNull(random);
-            float verticalSpeedModifier = (float)(random.NextDouble() + 0.5) * 0.15f;
-
-            rigidbody.velocity = new Vector2(
-                InitialHorizontalSpeed  * direction,
-                MaxInitialVerticalSpeed * verticalSpeedModifier
-            );
-        }
-
-        void OnCollision(Collision collision)
-        {
-            if (!isEntered) return;
-
-            if (collision.gameObject.Has<Paddle>())
-            {
-                agent.isBoosting = false;
-            }
+            agent.rigidbody.velocity = GetNewVelocity();
         }
 
         public void On(BallBoostEvent eventData)
         {
             if (!isEntered) return;
-
             if (eventData.ball != gameObject) return;
 
-            agent.isBoosting = true;
+            agent.fsm.ChangeState<BallBoostedState>();
         }
 
         public void On(PointScoreEvent eventData)
         {
             // Make it go towards the loser.
-            nextTowardsRight = eventData.leftPlayerScored;
+            nextTimeStartTowardsRight = eventData.leftPlayerScored;
+        }
+
+        private Vector2 GetNewVelocity()
+        {
+            float direction = nextTimeStartTowardsRight ? 1f : -1f;
+
+            random = random ?? Services.Get<Random>();
+            Assert.IsNotNull(random);
+            float verticalSpeedModifier = (float)(random.NextDouble() + 0.5) * 0.15f;
+
+            return new Vector2(
+                InitialHorizontalSpeed * direction,
+                MaxInitialVerticalSpeed * verticalSpeedModifier
+            );
         }
     }
 }

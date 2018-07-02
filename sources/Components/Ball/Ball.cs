@@ -11,10 +11,8 @@ namespace Pong
     {
         private const float MaxSpeed = 300f;
 
-        public bool isBoosting { get; set; }
-
         public Rigidbody rigidbody { get; private set; }
-        private BallBoostEffectRenderer boostEffectRenderer;
+        public BallBoostEffectRenderer boostEffectRenderer { get; private set; }
 
         public FiniteStateMachine<Ball> fsm { get; private set; }
 
@@ -33,17 +31,10 @@ namespace Pong
 
         void Update()
         {
-            Vector2 newVelocity = rigidbody.velocity;
+            /*Vector2 newVelocity = rigidbody.velocity;
             newVelocity.x = Mathf.Clamp(newVelocity.x, -MaxSpeed, +MaxSpeed);
             newVelocity.y = Mathf.Clamp(newVelocity.y, -MaxSpeed, +MaxSpeed);
-            rigidbody.velocity = newVelocity;
-
-            if (isBoosting)
-            {
-                gameObject.position += rigidbody.velocity * Game.FixedDeltaTime;
-            }
-
-            boostEffectRenderer.isOn = isBoosting;
+            rigidbody.velocity = newVelocity;*/
         }
 
         public void On(PointScoreEvent pointScore)
@@ -55,8 +46,6 @@ namespace Pong
         {
             gameObject.position = game.size * 0.5f;
             rigidbody.velocity = Vector2.zero;
-
-            isBoosting = false;
 
             fsm.ChangeState<BallStunnedState>();
         }

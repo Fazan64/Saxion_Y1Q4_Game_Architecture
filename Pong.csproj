@@ -55,7 +55,7 @@
     <Compile Include="Sources\Events\BallBoostEvent.cs" />
     <Compile Include="Sources\Components\Ball\Ball.cs" />
     <Compile Include="Sources\Components\Ball\BallBoostEffectRenderer.cs" />
-    <Compile Include="Sources\Components\BoostZone\Booster.cs" />
+    <Compile Include="Sources\Components\Booster\Booster.cs" />
     <Compile Include="Sources\Components\ScoreTracker.cs" />
     <Compile Include="Engine\Physics\PhysicsManager.cs" />
     <Compile Include="Engine\Physics\Collision.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="Engine\StateMachine\FsmState.cs" />
     <Compile Include="Sources\Components\Ball\States\BallStunnedState.cs" />
     <Compile Include="Sources\Components\Ball\States\BallMovingState.cs" />
+    <Compile Include="Sources\Components\Ball\States\BallBoostedState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ball.png">
@@ -112,7 +113,7 @@
     <Folder Include="Sources\Events\" />
     <Folder Include="Sources\Components\" />
     <Folder Include="Sources\Components\Ball\" />
-    <Folder Include="Sources\Components\BoostZone\" />
+    <Folder Include="Sources\Components\Booster\" />
     <Folder Include="Engine\Physics\" />
     <Folder Include="Engine\Physics\Colliders\" />
     <Folder Include="Sources\Components\Paddles\" />
