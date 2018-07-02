@@ -39,7 +39,7 @@ namespace Engine
 
         private static void AddDefaultServices()
         {
-            Add(new Random(1));
+            Add(new Random());
         }
     }
 }

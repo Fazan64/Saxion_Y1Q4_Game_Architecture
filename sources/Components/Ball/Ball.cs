@@ -33,6 +33,11 @@ namespace Pong
 
         void Update()
         {
+            Vector2 newVelocity = rigidbody.velocity;
+            newVelocity.x = Mathf.Clamp(newVelocity.x, -MaxSpeed, +MaxSpeed);
+            newVelocity.y = Mathf.Clamp(newVelocity.y, -MaxSpeed, +MaxSpeed);
+            rigidbody.velocity = newVelocity;
+
             if (isBoosting)
             {
                 gameObject.position += rigidbody.velocity * Game.FixedDeltaTime;

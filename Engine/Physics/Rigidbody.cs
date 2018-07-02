@@ -10,8 +10,8 @@ namespace Engine
     /// Whenever a collision is detected, broadcasts a CollisionEvent or a TriggerEvent.
     public class Rigidbody : Component
     {
-        public Vector2 velocity;
-        public float inverseMass = 1f;
+        public Vector2 velocity { get; set; }
+        public float inverseMass { get; set; } = 1f;
 
         public float mass
         {
@@ -58,10 +58,12 @@ namespace Engine
             ).Post();
 
             // Resolve
-
             gameObject.position += hit.delta;
 
-            var otherVelocity = Vector2.zero;
+            float bounciness = Mathf.Min(ownCollider.bounciness, otherCollider.bounciness);
+
+            Vector2 ownVelocity = velocity;
+            Vector2 otherVelocity = Vector2.zero;
             float otherInverseMass = 0f;
             if (otherRigidbody != null)
             {
@@ -69,13 +71,18 @@ namespace Engine
                 otherInverseMass = otherRigidbody.inverseMass;
             }
 
-            float bounciness = Mathf.Min(ownCollider.bounciness, otherCollider.bounciness);
-
             CollisionResolutionHelper.Resolve(
-                ref velocity, inverseMass,
+                ref ownVelocity, inverseMass,
                 ref otherVelocity, otherInverseMass, 
                 hit.normal, bounciness
             );
+
+            velocity = ownVelocity;
+
+            if (otherRigidbody != null)
+            {
+                otherRigidbody.velocity = otherVelocity;
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Pong
 
             float factor = 1f - Math.Abs(gameObject.position.x - ball.position.x) / game.size.x;
             float deltaY = ball.position.y - gameObject.position.y;
-            float yChange = factor * deltaY * Game.FixedDeltaTime * (100f / 60f);
+            float yChange = factor * deltaY * Game.FixedDeltaTime * (125f / 60f);
 
             gameObject.position.y += yChange;
         }

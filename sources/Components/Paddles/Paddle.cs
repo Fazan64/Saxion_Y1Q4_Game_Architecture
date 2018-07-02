@@ -32,7 +32,10 @@ namespace Pong
             float yVelocityMultiplier = Mathf.Abs(deltaY) / 50f;
 
             Assert.IsNotNull(collision.rigidbody);
-            collision.rigidbody.velocity.y *= yVelocityMultiplier;
+
+            Vector2 newVelocity = collision.rigidbody.velocity;
+            newVelocity.y *= yVelocityMultiplier;
+            collision.rigidbody.velocity = newVelocity;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-    public class Collision
+    public struct Collision
     {
         public readonly GameObject gameObject;
         public readonly Collider   collider;

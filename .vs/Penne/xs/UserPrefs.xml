@@ -1,15 +1,13 @@
 ﻿<Properties StartupConfiguration="{422FCC20-EE8D-4950-A9A3-69EF13BEE894}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Game.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engine/Core/GameObject.cs">
     <Files>
-      <File FileName="Sources/Components/Ball/Ball.cs" Line="9" Column="18" />
-      <File FileName="Sources/Components/Ball/States/BallMovingState.cs" Line="9" Column="39" />
+      <File FileName="Sources/Components/Ball/Ball.cs" Line="13" Column="9" />
+      <File FileName="Sources/Components/Ball/States/BallMovingState.cs" Line="27" Column="77" />
       <File FileName="Sources/MainLevel.cs" Line="92" Column="1" />
       <File FileName="Engine/BroadcastEvents/EventsManager.cs" Line="58" Column="38" />
-      <File FileName="Engine/BroadcastEvents/BroadcastEvent.cs" Line="8" Column="14" />
+      <File FileName="Engine/BroadcastEvents/BroadcastEvent.cs" Line="27" Column="10" />
       <File FileName="Engine/StateMachine/FiniteStateMachine.cs" Line="18" Column="16" />
-      <File FileName="Engine/EngineObject.cs" Line="7" Column="30" />
-      <File FileName="Engine/Core/Component.cs" Line="7" Column="38" />
-      <File FileName="Engine/Game.cs" Line="97" Column="1" />
+      <File FileName="Engine/Core/GameObject.cs" Line="15" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,13 +16,16 @@
             <Node name="Penne" expanded="True">
               <Node name="Engine" expanded="True">
                 <Node name="BroadcastEvents" expanded="True" />
-                <Node name="Core" expanded="True" />
+                <Node name="Core" expanded="True">
+                  <Node name="GameObject.cs" selected="True" />
+                </Node>
                 <Node name="Physics" expanded="True">
+                  <Node name="BroadcastEvents" expanded="True" />
                   <Node name="Colliders" expanded="True" />
                 </Node>
                 <Node name="StateMachine" expanded="True" />
                 <Node name="Update" expanded="True" />
-                <Node name="Game.cs" selected="True" />
+                <Node name="Utils" expanded="True" />
               </Node>
               <Node name="Sources" expanded="True">
                 <Node name="Components" expanded="True">
@@ -32,9 +33,20 @@
                     <Node name="States" expanded="True" />
                   </Node>
                   <Node name="BoostZone" expanded="True" />
+                  <Node name="Paddles" expanded="True" />
                 </Node>
                 <Node name="Events" expanded="True" />
               </Node>
+            </Node>
+            <Node name="Tests" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Penne" expanded="True">
+            <Node name="Tests" expanded="True">
+              <Node name="TestVector2" selected="True" />
             </Node>
           </Node>
         </State>
