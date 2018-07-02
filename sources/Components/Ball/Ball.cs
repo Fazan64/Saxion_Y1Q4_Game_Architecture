@@ -31,10 +31,7 @@ namespace Pong
 
         void Update()
         {
-            /*Vector2 newVelocity = rigidbody.velocity;
-            newVelocity.x = Mathf.Clamp(newVelocity.x, -MaxSpeed, +MaxSpeed);
-            newVelocity.y = Mathf.Clamp(newVelocity.y, -MaxSpeed, +MaxSpeed);
-            rigidbody.velocity = newVelocity;*/
+            rigidbody.velocity = rigidbody.velocity.TruncatedBy(MaxSpeed);
         }
 
         public void On(PointScoreEvent pointScore)
