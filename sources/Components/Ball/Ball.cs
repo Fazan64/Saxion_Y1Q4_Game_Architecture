@@ -9,7 +9,7 @@ namespace Pong
     public class Ball : Component, 
         IEventReceiver<PointScoreEvent>
     {
-        private const float MaxSpeed = 300f;
+        private const float MaxSpeed = 500f;
 
         public Rigidbody rigidbody { get; private set; }
         public BallBoostEffectRenderer boostEffectRenderer { get; private set; }
@@ -31,7 +31,10 @@ namespace Pong
 
         void Update()
         {
-            rigidbody.velocity = rigidbody.velocity.TruncatedBy(MaxSpeed);
+            Vector2 newVelocity = rigidbody.velocity;
+            newVelocity.x = Mathf.Clamp(newVelocity.x, -MaxSpeed, +MaxSpeed);
+            newVelocity.y = Mathf.Clamp(newVelocity.y, -MaxSpeed, +MaxSpeed);
+            rigidbody.velocity = newVelocity;
         }
 
         public void On(PointScoreEvent pointScore)
